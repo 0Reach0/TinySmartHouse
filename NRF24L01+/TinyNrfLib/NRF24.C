@@ -55,7 +55,10 @@ void SPI_Init_NRF(void) {
     SPI_Cmd(ENABLE);
 }
 
-
+void SPI_DeInit_NRF(void){
+		SPI_DeInit();
+		SPI_Cmd(DISABLE);
+}
 
 
 
@@ -219,6 +222,9 @@ void rx_init(void) {
     write_register(RF_SETUP_REGISTER, DEFAULT_RF_SETUP);
     delay(10);
     write_register(STATUS_REGISTER, DEFAULT_STATUS);
+		delay(10);
+		flush_tx();
+		delay(10);
     // nrf24l01p_write_registerN(0x0A, rxaddr, 5);
     // delay(10);
     // nrf24l01p_write_register(0x11, 0x01);
@@ -242,12 +248,32 @@ void tx_init(void) {
     write_register(RF_SETUP_REGISTER, DEFAULT_RF_SETUP); 
     delay(10);
     write_register(STATUS_REGISTER, DEFAULT_STATUS);
+		delay(10);
+		flush_tx();
+		delay(10);
    // nrf24l01p_write_registerN(0x10, txaddr, 5);
    // delay(10);
 }
 
 
+void nrf_deinit(void)
+{
+		GPIO_DeInit(GPIOC);
 
+    write_register(CONFIG_REGISTER, RESET_CONFIG); 
+    delay(10);
+    write_register(SETUP_AW_REGISTER, RESET_SETUP_AW); 
+    delay(10);
+    write_register(SETUP_RETR_REGISTER, RESET_SETUP_RETR); 
+    delay(10);
+    write_register(RF_CH_REGISTER, RESET_RF_CH); 
+    delay(10);
+    write_register(RF_SETUP_REGISTER, RESET_RF_SETUP); 
+    delay(10);
+    write_register(STATUS_REGISTER, RESET_STATUS);
+		delay(10);
+
+}
 
 
 uint8_t test_tx(void) {

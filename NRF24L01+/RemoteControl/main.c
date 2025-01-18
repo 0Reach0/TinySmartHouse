@@ -24,12 +24,12 @@ void init_pins(void) {
     GPIO_Init(RC_PIN2, GPIO_MODE_IN_PU_NO_IT); // ?????? 2
     GPIO_Init(RC_PIN3, GPIO_MODE_IN_PU_NO_IT); // ?????? 3
     GPIO_Init(RC_PIN4, GPIO_MODE_IN_PU_NO_IT); // ?????? 4
+
 }
 
 uint8_t Init_NRF(void)
 {
 		uint8_t reg;
-    GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST);
     SPI_Init_NRF();
     tx_init();
     delay(1000);
@@ -46,7 +46,6 @@ uint8_t Init_NRF(void)
 
 uint8_t waiting_for_click(uint8_t *row, uint8_t *col, uint8_t t) {
     uint8_t timeCounter = 0;
-
     while (1) {
         GPIO_WriteLow(RC_PIN5); GPIO_WriteHigh(RC_PIN6); GPIO_WriteHigh(RC_PIN7); GPIO_WriteHigh(RC_PIN8);
         if (GPIO_ReadInputPin(RC_PIN1) == RESET) { *row = 1; *col = 1; return 1; }
@@ -146,11 +145,37 @@ uint8_t procces_socket(uint8_t row, uint8_t col) {
 #endif //SOCKET
 
 
+#ifdef POWER_SAVE_MODE
+    void POWERSAVE(void)
+    {
+				nrf_deinit();
+				delay(1000);
+        SPI_DeInit_NRF();
+				
+        //rows
+        GPIO_DeInit(GPIOD);
+				GPIO_DeInit(GPIOA);
+
+        //Waiting for cAlick "*"
+				GPIO_Init(RC_PIN5, GPIO_MODE_OUT_PP_LOW_FAST);
+        GPIO_WriteLow(RC_PIN5);
+        GPIO_Init(RC_PIN1, GPIO_MODE_IN_PU_IT);
+        EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOD, EXTI_SENSITIVITY_FALL_ONLY);
+        enableInterrupts();
+				wfi();
+        
+
+
+
+    }
+#endif
+
+
 void main(void) {
     uint8_t res;
      init_pins();
-		GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST); // CSN
-    if(!Init_NRF()) {
+		GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST);
+		if(!Init_NRF()) {
         while(1);
     }
     while (1) {
@@ -158,30 +183,43 @@ void main(void) {
 						GPIO_WriteLow(GPIOB, GPIO_PIN_5);
         if (res) {
         {
+					
+						#ifdef POWER_SAVE_MODE
+                if(POWER_SAVE_BUTTON) {
+                    POWERSAVE();
+										GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
+                    continue;
+                }	
+						#endif
             #ifdef LED_STRIP
                 if(STRIP_MOD_BUTTON) {
                     SWITCH_TO_LESDSTRIP_MODE();
                 }
                 else if(CURRENT_MODE == STRIP_MOD) {
                     procces_LEDStrip(row, col);
+										GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
                     continue;
                 }
             #endif LED_STRIP
 
-						#ifdef SOCKET
+
+
+			#ifdef SOCKET
                 if(SOCKET_MOD_BUTTON) continue;
             #endif //SOCKET
 
 
-                procces_LEDStrip(row, col);
-            #ifdef SOCKET
-                procces_socket(row, col);
-            #endif //SOCKET
+
         }  
 				GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
     }
 	}
 }
+
+
+
+
+
 
 #ifdef USE_FULL_ASSERT
 void assert_failed(uint8_t* file, uint32_t line) {

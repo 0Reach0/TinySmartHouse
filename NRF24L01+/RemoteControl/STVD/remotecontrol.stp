@@ -73,7 +73,7 @@ Int.108=0
 String.6.0=2025,1,14,20,12,18
 String.100.0=$(TargetFName)
 String.101.0=
-String.103.0=.\;..;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src;..\..\tinynrflib;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc;..\..\stm8s_spl\project\stm8s_stdperiph_template;
+String.103.0=.\;..;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src;..\..\tinynrflib;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc;..\..\stm8s_spl\project\stm8s_stdperiph_template;..\..\stm8s_spl\project\stm8s_stdperiph_template\stvd\cosmic;
 
 [Root.Config.0.Settings.2]
 String.2.0=
@@ -152,7 +152,7 @@ Int.108=0
 String.6.0=2025,1,14,20,12,18
 String.100.0=$(TargetFName)
 String.101.0=
-String.103.0=.\;..;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src;..\..\tinynrflib;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc;..\..\stm8s_spl\project\stm8s_stdperiph_template;
+String.103.0=.\;..;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src;..\..\tinynrflib;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc;..\..\stm8s_spl\project\stm8s_stdperiph_template;..\..\stm8s_spl\project\stm8s_stdperiph_template\stvd\cosmic;
 
 [Root.Config.1.Settings.2]
 String.2.0=
@@ -318,6 +318,16 @@ Next=Root.Source Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8
 [Root.Source Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8s_spi.c]
 ElemType=File
 PathName=..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8s_spi.c
+Next=Root.Source Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_it.c
+
+[Root.Source Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_it.c]
+ElemType=File
+PathName=..\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_it.c
+Next=Root.Source Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stvd\cosmic\stm8_interrupt_vector.c
+
+[Root.Source Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stvd\cosmic\stm8_interrupt_vector.c]
+ElemType=File
+PathName=..\..\stm8s_spl\project\stm8s_stdperiph_template\stvd\cosmic\stm8_interrupt_vector.c
 Next=Root.Source Files...\..\tinynrflib\nrf24.c
 
 [Root.Source Files...\..\tinynrflib\nrf24.c]
@@ -328,11 +338,6 @@ Next=Root.Source Files...\main.c
 [Root.Source Files...\main.c]
 ElemType=File
 PathName=..\main.c
-Next=Root.Source Files.stm8_interrupt_vector.c
-
-[Root.Source Files.stm8_interrupt_vector.c]
-ElemType=File
-PathName=stm8_interrupt_vector.c
 
 [Root.Include Files]
 ElemType=Folder
@@ -450,11 +455,6 @@ Next=Root.Include Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_c
 [Root.Include Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_conf.h]
 ElemType=File
 PathName=..\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_conf.h
-Next=Root.Include Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_it.c
-
-[Root.Include Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_it.c]
-ElemType=File
-PathName=..\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_it.c
 Next=Root.Include Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_it.h
 
 [Root.Include Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_it.h]

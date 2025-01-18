@@ -21,6 +21,12 @@
 
 //change this defines due to ur needs
 
+
+#define POWER_SAVE_MODE  
+
+#define POWER_SAVE_BUTTON col == 1 && row == 4
+
+
 #define DEFAULT_MOD 0x00
 
 #define DEFAULT_ADDRESS 0x01
@@ -64,7 +70,8 @@ uint8_t waiting_for_click(uint8_t * row, uint8_t * col, uint8_t t); //t - timeou
 uint8_t swap_chanel(uint8_t chanel);
 
 void delay_ms(uint16_t ms);
-
+void init_pins(void);
+uint8_t Init_NRF(void);
 #ifdef LED_STRIP
 
     uint8_t procces_LEDStrip(uint8_t row, uint8_t col);
@@ -77,5 +84,13 @@ void delay_ms(uint16_t ms);
     uint8_t procces_socket(uint8_t row, uint8_t col);
 
 #endif //SOCKET
+
+
+#ifdef POWER_SAVE_MOD 
+   
+    void POWERSAVE(void);
+
+#endif //POWER_SAVE_MOD 
+
 
 #endif //_MAIN__H_

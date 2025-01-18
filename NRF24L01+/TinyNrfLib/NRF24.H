@@ -51,6 +51,19 @@
 
 
 
+#define RESET_CONFIG 			0x08
+#define RESET_EN_AA 			0x00
+#define RESET_RXADDR 			0x00
+#define RESET_SETUP_AW 		0x03
+#define RESET_SETUP_RETR 	0x03
+#define RESET_RF_CH 		  0x02
+#define RESET_RF_SETUP	  0x0F
+#define RESET_STATUS 		  0x70
+#define RX_ADDR_P0 				0xE7
+#define TX_ADDR						0xE7
+
+
+
 #define SET_PPE0_ADDR(arr, size) write_registerN(RX_ADDR_P0_REGISTER, arr,size)
 #define SET_PPE0_SIZE(size) write_register(RX_PW_P0_REGISTER, size)
 #define SET_TX_ADDR(arr,size) write_registerN(TX_ADDR_REGISTER, arr, size)
@@ -99,6 +112,7 @@ void tx_init(void);
 
 void rx_init(void);
 
+void nrf_deinit(void);
 
 void tx_send(const uint8_t *data, uint8_t len) ;
 
@@ -107,6 +121,9 @@ void rx_read(uint8_t *buf, uint8_t len);
 
 
 void SPI_Init_NRF(void);
+
+
+void SPI_DeInit_NRF(void);
 
 
 uint8_t test_tx(void);
