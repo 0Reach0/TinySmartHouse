@@ -57,9 +57,9 @@ Debug\stm8s_flash.o
 Debug\stm8s_gpio.o
 Debug\stm8s_itc.o
 Debug\stm8s_spi.o
-Debug\stm8s_it.o
 Debug\nrf24.o
 Debug\main.o
+Debug\stm8s_it.o
 #<END OBJECT_FILES>
 
 

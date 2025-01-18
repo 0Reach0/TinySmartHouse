@@ -661,32 +661,32 @@
 1355  0416 cd0000        	call	_EXTI_SetExtIntSensitivity
 1357                     ; 164         enableInterrupts();
 1360  0419 9a            rim
-1362                     ; 166 				wfi();
+1362                     ; 165 				wfi();
 1366  041a 8f            wfi
-1368                     ; 171     }
+1368                     ; 170     }
 1372  041b 81            	ret
-1418                     ; 175 void main(void) {
+1418                     ; 174 void main(void) {
 1419                     	switch	.text
 1420  041c               _main:
 1422  041c 88            	push	a
 1423       00000001      OFST:	set	1
-1426                     ; 177      init_pins();
+1426                     ; 176      init_pins();
 1428  041d cd0000        	call	_init_pins
-1430                     ; 178 		GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST);
+1430                     ; 177 		GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST);
 1432  0420 4bf0          	push	#240
 1433  0422 4b20          	push	#32
 1434  0424 ae5005        	ldw	x,#20485
 1435  0427 cd0000        	call	_GPIO_Init
 1437  042a 85            	popw	x
-1438                     ; 179 		if(!Init_NRF()) {
+1438                     ; 178 		if(!Init_NRF()) {
 1440  042b cd0059        	call	_Init_NRF
 1442  042e 4d            	tnz	a
 1443  042f 2602          	jrne	L153
 1444  0431               L543:
-1445                     ; 180         while(1);
+1445                     ; 179         while(1);
 1447  0431 20fe          	jra	L543
 1448  0433               L153:
-1449                     ; 183         res = waiting_for_click(&row, &col, 0);
+1449                     ; 182         res = waiting_for_click(&row, &col, 0);
 1451  0433 4b00          	push	#0
 1452  0435 ae0000        	ldw	x,#_col
 1453  0438 89            	pushw	x
@@ -694,60 +694,60 @@
 1455  043c cd008b        	call	_waiting_for_click
 1457  043f 5b03          	addw	sp,#3
 1458  0441 6b01          	ld	(OFST+0,sp),a
-1460                     ; 184 						GPIO_WriteLow(GPIOB, GPIO_PIN_5);
+1460                     ; 183 						GPIO_WriteLow(GPIOB, GPIO_PIN_5);
 1462  0443 4b20          	push	#32
 1463  0445 ae5005        	ldw	x,#20485
 1464  0448 cd0000        	call	_GPIO_WriteLow
 1466  044b 84            	pop	a
-1467                     ; 185         if (res) {
+1467                     ; 184         if (res) {
 1469  044c 0d01          	tnz	(OFST+0,sp)
 1470  044e 27e3          	jreq	L153
-1471                     ; 189                 if(POWER_SAVE_BUTTON) {
+1471                     ; 188                 if(POWER_SAVE_BUTTON) {
 1473  0450 b600          	ld	a,_col
 1474  0452 a101          	cp	a,#1
 1475  0454 2614          	jrne	L753
 1477  0456 b601          	ld	a,_row
 1478  0458 a104          	cp	a,#4
 1479  045a 260e          	jrne	L753
-1480                     ; 190                     POWERSAVE();
+1480                     ; 189                     POWERSAVE();
 1482  045c cd03dc        	call	_POWERSAVE
-1484                     ; 191 										GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
+1484                     ; 190 										GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
 1486  045f 4b20          	push	#32
 1487  0461 ae5005        	ldw	x,#20485
 1488  0464 cd0000        	call	_GPIO_WriteHigh
 1490  0467 84            	pop	a
-1491                     ; 192                     continue;
+1491                     ; 191                     continue;
 1493  0468 20c9          	jra	L153
 1494  046a               L753:
-1495                     ; 196                 if(STRIP_MOD_BUTTON) {
+1495                     ; 195                 if(STRIP_MOD_BUTTON) {
 1497  046a b600          	ld	a,_col
 1498  046c a104          	cp	a,#4
 1499  046e 260b          	jrne	L163
 1501  0470 b601          	ld	a,_row
 1502  0472 a101          	cp	a,#1
 1503  0474 2605          	jrne	L163
-1504                     ; 197                     SWITCH_TO_LESDSTRIP_MODE();
+1504                     ; 196                     SWITCH_TO_LESDSTRIP_MODE();
 1506  0476 cd033c        	call	_SWITCH_TO_LESDSTRIP_MODE
 1509  0479 2018          	jra	L363
 1510  047b               L163:
-1511                     ; 199                 else if(CURRENT_MODE == STRIP_MOD) {
+1511                     ; 198                 else if(CURRENT_MODE == STRIP_MOD) {
 1513  047b 3d00          	tnz	_CURRENT_MODE
 1514  047d 2614          	jrne	L363
-1515                     ; 200                     procces_LEDStrip(row, col);
+1515                     ; 199                     procces_LEDStrip(row, col);
 1517  047f b600          	ld	a,_col
 1518  0481 97            	ld	xl,a
 1519  0482 b601          	ld	a,_row
 1520  0484 95            	ld	xh,a
 1521  0485 cd0366        	call	_procces_LEDStrip
-1523                     ; 201 										GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
+1523                     ; 200 										GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
 1525  0488 4b20          	push	#32
 1526  048a ae5005        	ldw	x,#20485
 1527  048d cd0000        	call	_GPIO_WriteHigh
 1529  0490 84            	pop	a
-1530                     ; 202                     continue;
+1530                     ; 201                     continue;
 1532  0491 20a0          	jra	L153
 1533  0493               L363:
-1534                     ; 209                 if(SOCKET_MOD_BUTTON) continue;
+1534                     ; 208                 if(SOCKET_MOD_BUTTON) continue;
 1536  0493 b600          	ld	a,_col
 1537  0495 a102          	cp	a,#2
 1538  0497 2606          	jrne	L763
@@ -755,17 +755,17 @@
 1541  049b a104          	cp	a,#4
 1542  049d 2794          	jreq	L153
 1545  049f               L763:
-1546                     ; 215 				GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
+1546                     ; 214 				GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
 1548  049f 4b20          	push	#32
 1549  04a1 ae5005        	ldw	x,#20485
 1550  04a4 cd0000        	call	_GPIO_WriteHigh
 1552  04a7 84            	pop	a
 1553  04a8 2089          	jra	L153
-1588                     ; 226 void assert_failed(uint8_t* file, uint32_t line) {
+1588                     ; 225 void assert_failed(uint8_t* file, uint32_t line) {
 1589                     	switch	.text
 1590  04aa               _assert_failed:
 1594  04aa               L704:
-1595                     ; 228     while (1);
+1595                     ; 227     while (1);
 1597  04aa 20fe          	jra	L704
 1649                     	xdef	_main
 1650                     	xdef	_POWERSAVE

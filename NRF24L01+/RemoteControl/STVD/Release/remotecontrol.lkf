@@ -57,9 +57,9 @@ Release\stm8s_flash.o
 Release\stm8s_gpio.o
 Release\stm8s_itc.o
 Release\stm8s_spi.o
-Release\stm8s_it.o
 Release\nrf24.o
 Release\main.o
+Release\stm8s_it.o
 #<END OBJECT_FILES>
 
 

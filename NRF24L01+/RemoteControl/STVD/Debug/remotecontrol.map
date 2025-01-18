@@ -1,5 +1,5 @@
 
-Map of Debug\remotecontrol.sm8 from link file Debug\remotecontrol.lkf - Fri Jan 17 08:51:53 2025
+Map of Debug\remotecontrol.sm8 from link file Debug\remotecontrol.lkf - Sat Jan 18 05:36:50 2025
 
 
                                --------
@@ -74,23 +74,23 @@ start 00003ea9 end 00004de5 length  3900 section .debug
 start 000002cb end 00000339 length   110 section .info.
 start 00008104 end 00008145 length    65 section .const
 
-Debug\stm8s_it.o:
-start 0000886a end 000088dc length   114 section .text
-start 00004de5 end 000053d0 length  1515 section .debug
-start 00000339 end 000003a6 length   109 section .info.
-
 Debug\nrf24.o:
-start 000088dc end 00008e60 length  1412 section .text
-start 000053d0 end 00005c42 length  2162 section .debug
-start 000003a6 end 00000410 length   106 section .info.
+start 0000886a end 00008dee length  1412 section .text
+start 00004de5 end 00005657 length  2162 section .debug
+start 00000339 end 000003a3 length   106 section .info.
 
 Debug\main.o:
-start 00008e60 end 0000930c length  1196 section .text
+start 00008dee end 0000929a length  1196 section .text
 start 00000000 end 00000006 length     6 section .bsct
 start 00000006 end 00000008 length     2 section .ubsct
-start 00005c42 end 00006174 length  1330 section .debug
-start 00000410 end 00000479 length   105 section .info.
+start 00005657 end 00005b89 length  1330 section .debug
+start 000003a3 end 0000040c length   105 section .info.
 start 00008145 end 00008153 length    14 section .const
+
+Debug\stm8s_it.o:
+start 0000929a end 0000930c length   114 section .text
+start 00005b89 end 00006174 length  1515 section .debug
+start 0000040c end 00000479 length   109 section .info.
 
 (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)cmulx.o:
 start ******** end ******** length     0 section .text *** removed ***
@@ -666,16 +666,16 @@ _GPIO_Init                          0000833c   defined in Debug\stm8s_gpio.o sec
                                                used in Debug\nrf24.o Debug\main.o
 _GPIO_ReadInputData                 00008438   defined in Debug\stm8s_gpio.o section .text
 _GPIO_ReadInputPin                  0000843b   defined in Debug\stm8s_gpio.o section .text
-                                               used in Debug\stm8s_it.o
-                                                       Debug\main.o
+                                               used in Debug\main.o
+                                                       Debug\stm8s_it.o
 _GPIO_ReadOutputData                00008436   defined in Debug\stm8s_gpio.o section .text
 _GPIO_Write                         00008418   defined in Debug\stm8s_gpio.o section .text
 _GPIO_WriteHigh                     00008420   defined in Debug\stm8s_gpio.o section .text
-                                               used in Debug\stm8s_it.o
-                                                       Debug\nrf24.o Debug\main.o
+                                               used in Debug\nrf24.o Debug\main.o
+                                                       Debug\stm8s_it.o
 _GPIO_WriteLow                      00008427   defined in Debug\stm8s_gpio.o section .text
-                                               used in Debug\stm8s_it.o
-                                                       Debug\nrf24.o Debug\main.o
+                                               used in Debug\nrf24.o Debug\main.o
+                                                       Debug\stm8s_it.o
 _GPIO_WriteReverse                  0000842f   defined in Debug\stm8s_gpio.o section .text
 _HSIDivFactor                       ********   *** removed from Debug\stm8s_clk.o ***
 _ITC_DeInit                         ********   *** removed from Debug\stm8s_itc.o ***
@@ -683,9 +683,9 @@ _ITC_GetCPUCC                       ********   *** removed from Debug\stm8s_itc.
 _ITC_GetSoftIntStatus               ********   *** removed from Debug\stm8s_itc.o ***
 _ITC_GetSoftwarePriority            ********   *** removed from Debug\stm8s_itc.o ***
 _ITC_SetSoftwarePriority            ********   *** removed from Debug\stm8s_itc.o ***
-_Init_NRF                           00008eb9   defined in Debug\main.o section .text
+_Init_NRF                           00008e47   defined in Debug\main.o section .text
                                                used in Debug\stm8s_it.o
-_POWERSAVE                          0000923c   defined in Debug\main.o section .text
+_POWERSAVE                          000091ca   defined in Debug\main.o section .text
 _SPI_BiDirectionalLineConfig        0000872b   defined in Debug\stm8s_spi.o section .text
 _SPI_CalculateCRCCmd                000086c2   defined in Debug\stm8s_spi.o section .text
 _SPI_ClearFlag                      0000879a   defined in Debug\stm8s_spi.o section .text
@@ -694,7 +694,7 @@ _SPI_Cmd                            000085ee   defined in Debug\stm8s_spi.o sect
                                                used in Debug\nrf24.o
 _SPI_DeInit                         00008490   defined in Debug\stm8s_spi.o section .text
                                                used in Debug\nrf24.o
-_SPI_DeInit_NRF                     0000895b   defined in Debug\nrf24.o section .text
+_SPI_DeInit_NRF                     000088e9   defined in Debug\nrf24.o section .text
                                                used in Debug\main.o
 _SPI_GetCRC                         000086ed   defined in Debug\stm8s_spi.o section .text
 _SPI_GetCRCPolynomial               00008727   defined in Debug\stm8s_spi.o section .text
@@ -704,7 +704,7 @@ _SPI_GetITStatus                    000087be   defined in Debug\stm8s_spi.o sect
 _SPI_ITConfig                       00008619   defined in Debug\stm8s_spi.o section .text
 _SPI_Init                           000084a5   defined in Debug\stm8s_spi.o section .text
                                                used in Debug\nrf24.o
-_SPI_Init_NRF                       00008941   defined in Debug\nrf24.o section .text
+_SPI_Init_NRF                       000088cf   defined in Debug\nrf24.o section .text
                                                used in Debug\main.o
 _SPI_NSSInternalSoftwareCmd         00008692   defined in Debug\stm8s_spi.o section .text
 _SPI_ReceiveData                    0000868e   defined in Debug\stm8s_spi.o section .text
@@ -713,7 +713,7 @@ _SPI_ResetCRC                       0000871d   defined in Debug\stm8s_spi.o sect
 _SPI_SendData                       0000868a   defined in Debug\stm8s_spi.o section .text
                                                used in Debug\nrf24.o
 _SPI_TransmitCRC                    000086bd   defined in Debug\stm8s_spi.o section .text
-_SWITCH_TO_LESDSTRIP_MODE           0000919c   defined in Debug\main.o section .text
+_SWITCH_TO_LESDSTRIP_MODE           0000912a   defined in Debug\main.o section .text
 _TBR_Array                          ********   *** removed from Debug\stm8s_awu.o ***
 __endmem                            000001ff   defined in command file
                                                *** not used ***
@@ -730,7 +730,7 @@ __startmem                          00000100   defined in command file section .
 __stext                             00008161   defined in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8 section .text
                                                used in Debug\stm8_interrupt_vector.o
 __vectab                            00008000   defined in Debug\stm8_interrupt_vector.o section .const
-_assert_failed                      0000930a   defined in Debug\main.o section .text
+_assert_failed                      00009298   defined in Debug\main.o section .text
                                                used in Debug\stm8s_awu.o
                                                        Debug\stm8s_clk.o
                                                        Debug\stm8s_exti.o
@@ -738,44 +738,44 @@ _assert_failed                      0000930a   defined in Debug\main.o section .
                                                        Debug\stm8s_gpio.o
                                                        Debug\stm8s_itc.o
                                                        Debug\stm8s_spi.o
-_ce_high                            00008908   defined in Debug\nrf24.o section .text
-_ce_low                             00008912   defined in Debug\nrf24.o section .text
+_ce_high                            00008896   defined in Debug\nrf24.o section .text
+_ce_low                             000088a0   defined in Debug\nrf24.o section .text
 _col                                00000006   defined in Debug\main.o section .ubsct
-_cs_high                            000088f4   defined in Debug\nrf24.o section .text
-_cs_low                             000088fe   defined in Debug\nrf24.o section .text
-_delay                              000088dc   defined in Debug\nrf24.o section .text
-                                               used in Debug\stm8s_it.o
-                                                       Debug\main.o
-_delay_ms                           00009174   defined in Debug\main.o section .text
+_cs_high                            00008882   defined in Debug\nrf24.o section .text
+_cs_low                             0000888c   defined in Debug\nrf24.o section .text
+_delay                              0000886a   defined in Debug\nrf24.o section .text
+                                               used in Debug\main.o
+                                                       Debug\stm8s_it.o
+_delay_ms                           00009102   defined in Debug\main.o section .text
                                                used in Debug\stm8s_it.o
 _exit                               000081af   defined in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8 section .text
-_flush_rx                           00008932   defined in Debug\nrf24.o section .text
-_flush_tx                           00008923   defined in Debug\nrf24.o section .text
-_init_pins                          00008e60   defined in Debug\main.o section .text
+_flush_rx                           000088c0   defined in Debug\nrf24.o section .text
+_flush_tx                           000088b1   defined in Debug\nrf24.o section .text
+_init_pins                          00008dee   defined in Debug\main.o section .text
                                                used in Debug\stm8s_it.o
-_main                               0000927c   defined in Debug\main.o section .text
+_main                               0000920a   defined in Debug\main.o section .text
                                                used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8
-_nrf_deinit                         00008c40   defined in Debug\nrf24.o section .text
+_nrf_deinit                         00008bce   defined in Debug\nrf24.o section .text
                                                used in Debug\main.o
-_procces_LEDStrip                   000091c6   defined in Debug\main.o section .text
-_procces_socket                     00009239   defined in Debug\main.o section .text
-_read_register                      00008963   defined in Debug\nrf24.o section .text
-_read_registerN                     000089e3   defined in Debug\nrf24.o section .text
-_reset_status                       0000891c   defined in Debug\nrf24.o section .text
+_procces_LEDStrip                   00009154   defined in Debug\main.o section .text
+_procces_socket                     000091c7   defined in Debug\main.o section .text
+_read_register                      000088f1   defined in Debug\nrf24.o section .text
+_read_registerN                     00008971   defined in Debug\nrf24.o section .text
+_reset_status                       000088aa   defined in Debug\nrf24.o section .text
 _row                                00000007   defined in Debug\main.o section .ubsct
-_rx_init                            00008b64   defined in Debug\nrf24.o section .text
-_rx_read                            00008b0a   defined in Debug\nrf24.o section .text
-_test_rx                            00008d74   defined in Debug\nrf24.o section .text
-_test_tx                            00008c8f   defined in Debug\nrf24.o section .text
+_rx_init                            00008af2   defined in Debug\nrf24.o section .text
+_rx_read                            00008a98   defined in Debug\nrf24.o section .text
+_test_rx                            00008d02   defined in Debug\nrf24.o section .text
+_test_tx                            00008c1d   defined in Debug\nrf24.o section .text
                                                used in Debug\main.o
-_tx_init                            00008bd8   defined in Debug\nrf24.o section .text
+_tx_init                            00008b66   defined in Debug\nrf24.o section .text
                                                used in Debug\main.o
-_tx_send                            00008a99   defined in Debug\nrf24.o section .text
+_tx_send                            00008a27   defined in Debug\nrf24.o section .text
                                                used in Debug\main.o
 _txaddr                             00000001   defined in Debug\main.o section .bsct, initialized
-_waiting_for_click                  00008eeb   defined in Debug\main.o section .text
-_write_register                     000089b3   defined in Debug\nrf24.o section .text
-_write_registerN                    00008a4d   defined in Debug\nrf24.o section .text
+_waiting_for_click                  00008e79   defined in Debug\main.o section .text
+_write_register                     00008941   defined in Debug\nrf24.o section .text
+_write_registerN                    000089db   defined in Debug\nrf24.o section .text
                                                used in Debug\main.o
 c_cmulx                             ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)cmulx.o ***
 c_divsl                             ********   *** removed from (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)ldiv.o ***
@@ -805,44 +805,44 @@ c_y                                 0000000b   defined in (C:\Program Files (x86
                                                used in C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\crtsi0.sm8
                                                        Debug\stm8s_it.o
                                                        (C:\Program Files (x86)\COSMIC\FSE_Compilers\CXSTM8\lib\libm0.sm8)umul.o
-f_ADC1_IRQHandler                   000088d9   defined in Debug\stm8s_it.o section .text
+f_ADC1_IRQHandler                   00009309   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_AWU_IRQHandler                    0000886c   defined in Debug\stm8s_it.o section .text
+f_AWU_IRQHandler                    0000929c   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_CLK_IRQHandler                    0000886d   defined in Debug\stm8s_it.o section .text
+f_CLK_IRQHandler                    0000929d   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_EEPROM_EEC_IRQHandler             000088db   defined in Debug\stm8s_it.o section .text
+f_EEPROM_EEC_IRQHandler             0000930b   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_EXTI_PORTA_IRQHandler             0000886e   defined in Debug\stm8s_it.o section .text
+f_EXTI_PORTA_IRQHandler             0000929e   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_EXTI_PORTB_IRQHandler             0000886f   defined in Debug\stm8s_it.o section .text
+f_EXTI_PORTB_IRQHandler             0000929f   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_EXTI_PORTC_IRQHandler             00008870   defined in Debug\stm8s_it.o section .text
+f_EXTI_PORTC_IRQHandler             000092a0   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_EXTI_PORTD_IRQHandler             00008871   defined in Debug\stm8s_it.o section .text
+f_EXTI_PORTD_IRQHandler             000092a1   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_EXTI_PORTE_IRQHandler             000088d0   defined in Debug\stm8s_it.o section .text
+f_EXTI_PORTE_IRQHandler             00009300   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_I2C_IRQHandler                    000088d8   defined in Debug\stm8s_it.o section .text
+f_I2C_IRQHandler                    00009308   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
 f_NonHandledInterrupt               0000934b   defined in Debug\stm8_interrupt_vector.o section .text
-f_SPI_IRQHandler                    000088d1   defined in Debug\stm8s_it.o section .text
+f_SPI_IRQHandler                    00009301   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_TIM1_CAP_COM_IRQHandler           000088d3   defined in Debug\stm8s_it.o section .text
+f_TIM1_CAP_COM_IRQHandler           00009303   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_TIM1_UPD_OVF_TRG_BRK_IRQHandler   000088d2   defined in Debug\stm8s_it.o section .text
+f_TIM1_UPD_OVF_TRG_BRK_IRQHandler   00009302   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_TIM2_CAP_COM_IRQHandler           000088d5   defined in Debug\stm8s_it.o section .text
+f_TIM2_CAP_COM_IRQHandler           00009305   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_TIM2_UPD_OVF_BRK_IRQHandler       000088d4   defined in Debug\stm8s_it.o section .text
+f_TIM2_UPD_OVF_BRK_IRQHandler       00009304   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_TIM4_UPD_OVF_IRQHandler           000088da   defined in Debug\stm8s_it.o section .text
+f_TIM4_UPD_OVF_IRQHandler           0000930a   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_TLI_IRQHandler                    0000886b   defined in Debug\stm8s_it.o section .text
+f_TLI_IRQHandler                    0000929b   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_TRAP_IRQHandler                   0000886a   defined in Debug\stm8s_it.o section .text
+f_TRAP_IRQHandler                   0000929a   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_UART1_RX_IRQHandler               000088d7   defined in Debug\stm8s_it.o section .text
+f_UART1_RX_IRQHandler               00009307   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
-f_UART1_TX_IRQHandler               000088d6   defined in Debug\stm8s_it.o section .text
+f_UART1_TX_IRQHandler               00009306   defined in Debug\stm8s_it.o section .text
                                                used in Debug\stm8_interrupt_vector.o
