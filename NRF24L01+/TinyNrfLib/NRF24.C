@@ -166,7 +166,6 @@ void tx_send(const uint8_t *data, uint8_t len) {
     delay(10);
     cs_high();
     
-    //send data  
     ce_high();
     delay(10);
     ce_low();
@@ -204,7 +203,6 @@ void rx_read(uint8_t *buf, uint8_t len) {
 
 
 void rx_init(void) {
-    //uint8_t rxaddr[] = {0x01, 0x01, 0x01, 0x01, 0x01};
     GPIO_Init(CSN_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
     GPIO_Init(CE_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
     
@@ -225,15 +223,11 @@ void rx_init(void) {
 		delay(10);
 		flush_tx();
 		delay(10);
-    // nrf24l01p_write_registerN(0x0A, rxaddr, 5);
-    // delay(10);
-    // nrf24l01p_write_register(0x11, 0x01);
-    // delay(10);
+
 }
 
 
 void tx_init(void) {
-   // uint8_t txaddr[] = {0x01, 0x01, 0x01, 0x01, 0x01};
     GPIO_Init(CSN_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
     GPIO_Init(CE_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
 
@@ -248,11 +242,9 @@ void tx_init(void) {
     write_register(RF_SETUP_REGISTER, DEFAULT_RF_SETUP); 
     delay(10);
     write_register(STATUS_REGISTER, DEFAULT_STATUS);
-		delay(10);
-		flush_tx();
-		delay(10);
-   // nrf24l01p_write_registerN(0x10, txaddr, 5);
-   // delay(10);
+	delay(10);
+	flush_tx();
+	delay(10);
 }
 
 
@@ -316,14 +308,6 @@ uint8_t test_tx(void) {
         return 1;
     }
 
-
-    read_registerN(0x10, regn, 5);
-    delay(10);
-    if (regn[0] != 0x1) return 1;
-    else if (regn[1] != 0x1) return 1;
-    else if (regn[2] != 0x1) return 1;
-    else if (regn[3] != 0x1) return 1;
-    else if (regn[4] != 0x1) return 1;
     return 0;
 }
 
@@ -369,13 +353,6 @@ uint8_t test_rx(void) {
     if (reg != 0x0e) {
         return 1;
     }
-		read_registerN(0x0A, regn, 5);
-    delay(10);
-    if (regn[0] != 0x1) return 1;
-    else if (regn[1] != 0x1) return 1;
-    else if (regn[2] != 0x1) return 1;
-    else if (regn[3] != 0x1) return 1;
-    else if (regn[4] != 0x1) return 1;
 	return 0;
 
 }

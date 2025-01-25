@@ -516,503 +516,422 @@
 1534                     ; 206 void rx_init(void) {
 1535                     	switch	.text
 1536  0288               _rx_init:
-1540                     ; 208     GPIO_Init(CSN_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
+1540                     ; 207     GPIO_Init(CSN_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
 1542  0288 4bf0          	push	#240
 1543  028a 4b10          	push	#16
 1544  028c ae500a        	ldw	x,#20490
 1545  028f cd0000        	call	_GPIO_Init
 1547  0292 85            	popw	x
-1548                     ; 209     GPIO_Init(CE_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
+1548                     ; 208     GPIO_Init(CE_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
 1550  0293 4bf0          	push	#240
 1551  0295 4b08          	push	#8
 1552  0297 ae500a        	ldw	x,#20490
 1553  029a cd0000        	call	_GPIO_Init
 1555  029d 85            	popw	x
-1556                     ; 212     write_register(CONFIG_REGISTER, DEFAULT_CONFIG_RX);
+1556                     ; 211     write_register(CONFIG_REGISTER, DEFAULT_CONFIG_RX);
 1558  029e ae000f        	ldw	x,#15
 1559  02a1 cd00d7        	call	_write_register
-1561                     ; 213     delay(10);
+1561                     ; 212     delay(10);
 1563  02a4 ae000a        	ldw	x,#10
 1564  02a7 cd0000        	call	_delay
-1566                     ; 214     write_register(EN_AA_REGISTER, DEFAULT_EN_AA);
+1566                     ; 213     write_register(EN_AA_REGISTER, DEFAULT_EN_AA);
 1568  02aa ae0101        	ldw	x,#257
 1569  02ad cd00d7        	call	_write_register
-1571                     ; 215     delay(10);
+1571                     ; 214     delay(10);
 1573  02b0 ae000a        	ldw	x,#10
 1574  02b3 cd0000        	call	_delay
-1576                     ; 216     write_register(EN_RXADDR_REGISTER, DEFAULT_EN_RXADDR);
+1576                     ; 215     write_register(EN_RXADDR_REGISTER, DEFAULT_EN_RXADDR);
 1578  02b6 ae0201        	ldw	x,#513
 1579  02b9 cd00d7        	call	_write_register
-1581                     ; 217     delay(10);
+1581                     ; 216     delay(10);
 1583  02bc ae000a        	ldw	x,#10
 1584  02bf cd0000        	call	_delay
-1586                     ; 218     write_register(SETUP_AW_REGISTER, DEFAULT_SETUP_AW);
+1586                     ; 217     write_register(SETUP_AW_REGISTER, DEFAULT_SETUP_AW);
 1588  02c2 ae0303        	ldw	x,#771
 1589  02c5 cd00d7        	call	_write_register
-1591                     ; 219     delay(10);
+1591                     ; 218     delay(10);
 1593  02c8 ae000a        	ldw	x,#10
 1594  02cb cd0000        	call	_delay
-1596                     ; 220     write_register(RF_CH_REGISTER, 120); 
+1596                     ; 219     write_register(RF_CH_REGISTER, 120); 
 1598  02ce ae0578        	ldw	x,#1400
 1599  02d1 cd00d7        	call	_write_register
-1601                     ; 221     delay(10);
+1601                     ; 220     delay(10);
 1603  02d4 ae000a        	ldw	x,#10
 1604  02d7 cd0000        	call	_delay
-1606                     ; 222     write_register(RF_SETUP_REGISTER, DEFAULT_RF_SETUP);
+1606                     ; 221     write_register(RF_SETUP_REGISTER, DEFAULT_RF_SETUP);
 1608  02da ae0608        	ldw	x,#1544
 1609  02dd cd00d7        	call	_write_register
-1611                     ; 223     delay(10);
+1611                     ; 222     delay(10);
 1613  02e0 ae000a        	ldw	x,#10
 1614  02e3 cd0000        	call	_delay
-1616                     ; 224     write_register(STATUS_REGISTER, DEFAULT_STATUS);
+1616                     ; 223     write_register(STATUS_REGISTER, DEFAULT_STATUS);
 1618  02e6 ae0770        	ldw	x,#1904
 1619  02e9 cd00d7        	call	_write_register
-1621                     ; 225 		delay(10);
+1621                     ; 224 		delay(10);
 1623  02ec ae000a        	ldw	x,#10
 1624  02ef cd0000        	call	_delay
-1626                     ; 226 		flush_tx();
+1626                     ; 225 		flush_tx();
 1628  02f2 cd0047        	call	_flush_tx
-1630                     ; 227 		delay(10);
+1630                     ; 226 		delay(10);
 1632  02f5 ae000a        	ldw	x,#10
 1633  02f8 cd0000        	call	_delay
-1635                     ; 232 }
+1635                     ; 228 }
 1638  02fb 81            	ret
-1665                     ; 235 void tx_init(void) {
+1665                     ; 231 void tx_init(void) {
 1666                     	switch	.text
 1667  02fc               _tx_init:
-1671                     ; 237     GPIO_Init(CSN_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
+1671                     ; 232     GPIO_Init(CSN_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
 1673  02fc 4bf0          	push	#240
 1674  02fe 4b10          	push	#16
 1675  0300 ae500a        	ldw	x,#20490
 1676  0303 cd0000        	call	_GPIO_Init
 1678  0306 85            	popw	x
-1679                     ; 238     GPIO_Init(CE_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
+1679                     ; 233     GPIO_Init(CE_PIN, GPIO_MODE_OUT_PP_HIGH_FAST);
 1681  0307 4bf0          	push	#240
 1682  0309 4b08          	push	#8
 1683  030b ae500a        	ldw	x,#20490
 1684  030e cd0000        	call	_GPIO_Init
 1686  0311 85            	popw	x
-1687                     ; 240     write_register(CONFIG_REGISTER, DEFAULT_CONFIG_TX); 
+1687                     ; 235     write_register(CONFIG_REGISTER, DEFAULT_CONFIG_TX); 
 1689  0312 ae000e        	ldw	x,#14
 1690  0315 cd00d7        	call	_write_register
-1692                     ; 241     delay(10);
+1692                     ; 236     delay(10);
 1694  0318 ae000a        	ldw	x,#10
 1695  031b cd0000        	call	_delay
-1697                     ; 242     write_register(SETUP_AW_REGISTER, DEFAULT_SETUP_AW); 
+1697                     ; 237     write_register(SETUP_AW_REGISTER, DEFAULT_SETUP_AW); 
 1699  031e ae0303        	ldw	x,#771
 1700  0321 cd00d7        	call	_write_register
-1702                     ; 243     delay(10);
+1702                     ; 238     delay(10);
 1704  0324 ae000a        	ldw	x,#10
 1705  0327 cd0000        	call	_delay
-1707                     ; 244     write_register(SETUP_RETR_REGISTER, DEFAULT_SETUP_RETR); 
+1707                     ; 239     write_register(SETUP_RETR_REGISTER, DEFAULT_SETUP_RETR); 
 1709  032a ae0401        	ldw	x,#1025
 1710  032d cd00d7        	call	_write_register
-1712                     ; 245     delay(10);
+1712                     ; 240     delay(10);
 1714  0330 ae000a        	ldw	x,#10
 1715  0333 cd0000        	call	_delay
-1717                     ; 246     write_register(RF_CH_REGISTER, 120); 
+1717                     ; 241     write_register(RF_CH_REGISTER, 120); 
 1719  0336 ae0578        	ldw	x,#1400
 1720  0339 cd00d7        	call	_write_register
-1722                     ; 247     delay(10);
+1722                     ; 242     delay(10);
 1724  033c ae000a        	ldw	x,#10
 1725  033f cd0000        	call	_delay
-1727                     ; 248     write_register(RF_SETUP_REGISTER, DEFAULT_RF_SETUP); 
+1727                     ; 243     write_register(RF_SETUP_REGISTER, DEFAULT_RF_SETUP); 
 1729  0342 ae0608        	ldw	x,#1544
 1730  0345 cd00d7        	call	_write_register
-1732                     ; 249     delay(10);
+1732                     ; 244     delay(10);
 1734  0348 ae000a        	ldw	x,#10
 1735  034b cd0000        	call	_delay
-1737                     ; 250     write_register(STATUS_REGISTER, DEFAULT_STATUS);
+1737                     ; 245     write_register(STATUS_REGISTER, DEFAULT_STATUS);
 1739  034e ae0770        	ldw	x,#1904
 1740  0351 cd00d7        	call	_write_register
-1742                     ; 251 		delay(10);
+1742                     ; 246 	delay(10);
 1744  0354 ae000a        	ldw	x,#10
 1745  0357 cd0000        	call	_delay
-1747                     ; 252 		flush_tx();
+1747                     ; 247 	flush_tx();
 1749  035a cd0047        	call	_flush_tx
-1751                     ; 253 		delay(10);
+1751                     ; 248 	delay(10);
 1753  035d ae000a        	ldw	x,#10
 1754  0360 cd0000        	call	_delay
-1756                     ; 256 }
+1756                     ; 249 }
 1759  0363 81            	ret
-1785                     ; 259 void nrf_deinit(void)
-1785                     ; 260 {
+1785                     ; 252 void nrf_deinit(void)
+1785                     ; 253 {
 1786                     	switch	.text
 1787  0364               _nrf_deinit:
-1791                     ; 261 		GPIO_DeInit(GPIOC);
+1791                     ; 254 		GPIO_DeInit(GPIOC);
 1793  0364 ae500a        	ldw	x,#20490
 1794  0367 cd0000        	call	_GPIO_DeInit
-1796                     ; 263     write_register(CONFIG_REGISTER, RESET_CONFIG); 
+1796                     ; 256     write_register(CONFIG_REGISTER, RESET_CONFIG); 
 1798  036a ae0008        	ldw	x,#8
 1799  036d cd00d7        	call	_write_register
-1801                     ; 264     delay(10);
+1801                     ; 257     delay(10);
 1803  0370 ae000a        	ldw	x,#10
 1804  0373 cd0000        	call	_delay
-1806                     ; 265     write_register(SETUP_AW_REGISTER, RESET_SETUP_AW); 
+1806                     ; 258     write_register(SETUP_AW_REGISTER, RESET_SETUP_AW); 
 1808  0376 ae0303        	ldw	x,#771
 1809  0379 cd00d7        	call	_write_register
-1811                     ; 266     delay(10);
+1811                     ; 259     delay(10);
 1813  037c ae000a        	ldw	x,#10
 1814  037f cd0000        	call	_delay
-1816                     ; 267     write_register(SETUP_RETR_REGISTER, RESET_SETUP_RETR); 
+1816                     ; 260     write_register(SETUP_RETR_REGISTER, RESET_SETUP_RETR); 
 1818  0382 ae0403        	ldw	x,#1027
 1819  0385 cd00d7        	call	_write_register
-1821                     ; 268     delay(10);
+1821                     ; 261     delay(10);
 1823  0388 ae000a        	ldw	x,#10
 1824  038b cd0000        	call	_delay
-1826                     ; 269     write_register(RF_CH_REGISTER, RESET_RF_CH); 
+1826                     ; 262     write_register(RF_CH_REGISTER, RESET_RF_CH); 
 1828  038e ae0502        	ldw	x,#1282
 1829  0391 cd00d7        	call	_write_register
-1831                     ; 270     delay(10);
+1831                     ; 263     delay(10);
 1833  0394 ae000a        	ldw	x,#10
 1834  0397 cd0000        	call	_delay
-1836                     ; 271     write_register(RF_SETUP_REGISTER, RESET_RF_SETUP); 
+1836                     ; 264     write_register(RF_SETUP_REGISTER, RESET_RF_SETUP); 
 1838  039a ae060f        	ldw	x,#1551
 1839  039d cd00d7        	call	_write_register
-1841                     ; 272     delay(10);
+1841                     ; 265     delay(10);
 1843  03a0 ae000a        	ldw	x,#10
 1844  03a3 cd0000        	call	_delay
-1846                     ; 273     write_register(STATUS_REGISTER, RESET_STATUS);
+1846                     ; 266     write_register(STATUS_REGISTER, RESET_STATUS);
 1848  03a6 ae0770        	ldw	x,#1904
 1849  03a9 cd00d7        	call	_write_register
-1851                     ; 274 		delay(10);
+1851                     ; 267 		delay(10);
 1853  03ac ae000a        	ldw	x,#10
 1854  03af cd0000        	call	_delay
-1856                     ; 276 }
+1856                     ; 269 }
 1859  03b2 81            	ret
-1906                     ; 279 uint8_t test_tx(void) {
-1907                     	switch	.text
-1908  03b3               _test_tx:
-1910  03b3 5206          	subw	sp,#6
-1911       00000006      OFST:	set	6
-1914                     ; 282     reg = read_register(STATUS_REGISTER);
-1916  03b5 a607          	ld	a,#7
-1917  03b7 cd0087        	call	_read_register
-1919  03ba 6b06          	ld	(OFST+0,sp),a
-1921                     ; 283 		delay(10);
-1923  03bc ae000a        	ldw	x,#10
-1924  03bf cd0000        	call	_delay
-1926                     ; 284     delay(10);
-1928  03c2 ae000a        	ldw	x,#10
-1929  03c5 cd0000        	call	_delay
-1931                     ; 285     if (reg != 0x0e) {
-1933  03c8 7b06          	ld	a,(OFST+0,sp)
-1934  03ca a10e          	cp	a,#14
-1935  03cc 2704          	jreq	L376
-1936                     ; 286         return 1;
-1938  03ce a601          	ld	a,#1
-1940  03d0 2014          	jra	L45
-1941  03d2               L376:
-1942                     ; 289 		reg = read_register(CONFIG_REGISTER);
-1944  03d2 4f            	clr	a
-1945  03d3 cd0087        	call	_read_register
-1947  03d6 6b06          	ld	(OFST+0,sp),a
-1949                     ; 290     delay(10);
-1951  03d8 ae000a        	ldw	x,#10
-1952  03db cd0000        	call	_delay
-1954                     ; 291     if (reg != DEFAULT_CONFIG_TX) {
-1956  03de 7b06          	ld	a,(OFST+0,sp)
-1957  03e0 a10e          	cp	a,#14
-1958  03e2 2705          	jreq	L576
-1959                     ; 292         return 1;
-1961  03e4 a601          	ld	a,#1
-1963  03e6               L45:
-1965  03e6 5b06          	addw	sp,#6
-1966  03e8 81            	ret
-1967  03e9               L576:
-1968                     ; 295     reg = read_register(SETUP_AW_REGISTER);
-1970  03e9 a603          	ld	a,#3
-1971  03eb cd0087        	call	_read_register
-1973  03ee 6b06          	ld	(OFST+0,sp),a
-1975                     ; 296     delay(10);
-1977  03f0 ae000a        	ldw	x,#10
-1978  03f3 cd0000        	call	_delay
-1980                     ; 297     if (reg != DEFAULT_SETUP_AW) {
-1982  03f6 7b06          	ld	a,(OFST+0,sp)
-1983  03f8 a103          	cp	a,#3
-1984  03fa 2704          	jreq	L776
-1985                     ; 298         return 1;
-1987  03fc a601          	ld	a,#1
-1989  03fe 20e6          	jra	L45
-1990  0400               L776:
-1991                     ; 301     reg = read_register(SETUP_RETR_REGISTER);
-1993  0400 a604          	ld	a,#4
-1994  0402 cd0087        	call	_read_register
-1996  0405 6b06          	ld	(OFST+0,sp),a
-1998                     ; 302     delay(10);
-2000  0407 ae000a        	ldw	x,#10
-2001  040a cd0000        	call	_delay
-2003                     ; 303     if (reg != DEFAULT_SETUP_RETR) {
-2005  040d 7b06          	ld	a,(OFST+0,sp)
-2006  040f a101          	cp	a,#1
-2007  0411 2704          	jreq	L107
-2008                     ; 304         return 1;
-2010  0413 a601          	ld	a,#1
-2012  0415 20cf          	jra	L45
-2013  0417               L107:
-2014                     ; 307     reg = read_register(RF_CH_REGISTER);
-2016  0417 a605          	ld	a,#5
-2017  0419 cd0087        	call	_read_register
-2019  041c 6b06          	ld	(OFST+0,sp),a
-2021                     ; 308     delay(10);
-2023  041e ae000a        	ldw	x,#10
-2024  0421 cd0000        	call	_delay
-2026                     ; 309     if (reg != 120) {
-2028  0424 7b06          	ld	a,(OFST+0,sp)
-2029  0426 a178          	cp	a,#120
-2030  0428 2704          	jreq	L307
-2031                     ; 310         return 1;
-2033  042a a601          	ld	a,#1
-2035  042c 20b8          	jra	L45
-2036  042e               L307:
-2037                     ; 313     reg = read_register(RF_SETUP_REGISTER);
-2039  042e a606          	ld	a,#6
-2040  0430 cd0087        	call	_read_register
-2042  0433 6b06          	ld	(OFST+0,sp),a
-2044                     ; 314     delay(10);
-2046  0435 ae000a        	ldw	x,#10
-2047  0438 cd0000        	call	_delay
-2049                     ; 315     if (reg != DEFAULT_RF_SETUP) {
-2051  043b 7b06          	ld	a,(OFST+0,sp)
-2052  043d a108          	cp	a,#8
-2053  043f 2704          	jreq	L507
-2054                     ; 316         return 1;
-2056  0441 a601          	ld	a,#1
-2058  0443 20a1          	jra	L45
-2059  0445               L507:
-2060                     ; 320     read_registerN(0x10, regn, 5);
-2062  0445 4b05          	push	#5
-2063  0447 96            	ldw	x,sp
-2064  0448 1c0002        	addw	x,#OFST-4
-2065  044b 89            	pushw	x
-2066  044c a610          	ld	a,#16
-2067  044e cd0107        	call	_read_registerN
-2069  0451 5b03          	addw	sp,#3
-2070                     ; 321     delay(10);
-2072  0453 ae000a        	ldw	x,#10
-2073  0456 cd0000        	call	_delay
-2075                     ; 322     if (regn[0] != 0x1) return 1;
-2077  0459 7b01          	ld	a,(OFST-5,sp)
-2078  045b a101          	cp	a,#1
-2079  045d 2704          	jreq	L707
-2082  045f a601          	ld	a,#1
-2084  0461 2083          	jra	L45
-2085  0463               L707:
-2086                     ; 323     else if (regn[1] != 0x1) return 1;
-2088  0463 7b02          	ld	a,(OFST-4,sp)
-2089  0465 a101          	cp	a,#1
-2090  0467 2706          	jreq	L317
-2093  0469 a601          	ld	a,#1
-2095  046b ace603e6      	jpf	L45
-2096  046f               L317:
-2097                     ; 324     else if (regn[2] != 0x1) return 1;
-2099  046f 7b03          	ld	a,(OFST-3,sp)
-2100  0471 a101          	cp	a,#1
-2101  0473 2706          	jreq	L717
-2104  0475 a601          	ld	a,#1
-2106  0477 ace603e6      	jpf	L45
-2107  047b               L717:
-2108                     ; 325     else if (regn[3] != 0x1) return 1;
-2110  047b 7b04          	ld	a,(OFST-2,sp)
-2111  047d a101          	cp	a,#1
-2112  047f 2706          	jreq	L327
-2115  0481 a601          	ld	a,#1
-2117  0483 ace603e6      	jpf	L45
-2118  0487               L327:
-2119                     ; 326     else if (regn[4] != 0x1) return 1;
-2121  0487 7b05          	ld	a,(OFST-1,sp)
-2122  0489 a101          	cp	a,#1
-2123  048b 2706          	jreq	L117
-2126  048d a601          	ld	a,#1
-2128  048f ace603e6      	jpf	L45
-2129  0493               L117:
-2130                     ; 327     return 0;
-2132  0493 4f            	clr	a
-2134  0494 ace603e6      	jpf	L45
-2181                     ; 330 uint8_t test_rx(void) {
-2182                     	switch	.text
-2183  0498               _test_rx:
-2185  0498 5206          	subw	sp,#6
-2186       00000006      OFST:	set	6
-2189                     ; 333     reg = read_register(CONFIG_REGISTER);
-2191  049a 4f            	clr	a
-2192  049b cd0087        	call	_read_register
-2194  049e 6b06          	ld	(OFST+0,sp),a
-2196                     ; 334     delay(10);
-2198  04a0 ae000a        	ldw	x,#10
-2199  04a3 cd0000        	call	_delay
-2201                     ; 335     if (reg != DEFAULT_CONFIG_RX) {
-2203  04a6 7b06          	ld	a,(OFST+0,sp)
-2204  04a8 a10f          	cp	a,#15
-2205  04aa 2704          	jreq	L357
-2206                     ; 336         return 1;
-2208  04ac a601          	ld	a,#1
-2210  04ae 2015          	jra	L06
-2211  04b0               L357:
-2212                     ; 339     reg = read_register(EN_AA_REGISTER);
-2214  04b0 a601          	ld	a,#1
-2215  04b2 cd0087        	call	_read_register
-2217  04b5 6b06          	ld	(OFST+0,sp),a
-2219                     ; 340     delay(10);
-2221  04b7 ae000a        	ldw	x,#10
-2222  04ba cd0000        	call	_delay
-2224                     ; 341     if (reg != DEFAULT_EN_AA) {
-2226  04bd 7b06          	ld	a,(OFST+0,sp)
-2227  04bf a101          	cp	a,#1
-2228  04c1 2705          	jreq	L557
-2229                     ; 342         return 1;
-2231  04c3 a601          	ld	a,#1
-2233  04c5               L06:
-2235  04c5 5b06          	addw	sp,#6
-2236  04c7 81            	ret
-2237  04c8               L557:
-2238                     ; 345     reg = read_register(EN_RXADDR_REGISTER);
-2240  04c8 a602          	ld	a,#2
-2241  04ca cd0087        	call	_read_register
-2243  04cd 6b06          	ld	(OFST+0,sp),a
-2245                     ; 346     if (reg != DEFAULT_EN_RXADDR) {
-2247  04cf 7b06          	ld	a,(OFST+0,sp)
-2248  04d1 a101          	cp	a,#1
-2249  04d3 2704          	jreq	L757
-2250                     ; 347         return 1;
-2252  04d5 a601          	ld	a,#1
-2254  04d7 20ec          	jra	L06
-2255  04d9               L757:
-2256                     ; 350     reg = read_register(SETUP_AW_REGISTER);
-2258  04d9 a603          	ld	a,#3
-2259  04db cd0087        	call	_read_register
-2261  04de 6b06          	ld	(OFST+0,sp),a
-2263                     ; 351     delay(10);
-2265  04e0 ae000a        	ldw	x,#10
-2266  04e3 cd0000        	call	_delay
-2268                     ; 352     if (reg != DEFAULT_SETUP_AW) {
-2270  04e6 7b06          	ld	a,(OFST+0,sp)
-2271  04e8 a103          	cp	a,#3
-2272  04ea 2704          	jreq	L167
-2273                     ; 353         return 1;
-2275  04ec a601          	ld	a,#1
-2277  04ee 20d5          	jra	L06
-2278  04f0               L167:
-2279                     ; 356     reg = read_register(RF_CH_REGISTER);
-2281  04f0 a605          	ld	a,#5
-2282  04f2 cd0087        	call	_read_register
-2284  04f5 6b06          	ld	(OFST+0,sp),a
-2286                     ; 357     delay(10);
-2288  04f7 ae000a        	ldw	x,#10
-2289  04fa cd0000        	call	_delay
-2291                     ; 358     if (reg != 120) {
-2293  04fd 7b06          	ld	a,(OFST+0,sp)
-2294  04ff a178          	cp	a,#120
-2295  0501 2704          	jreq	L367
-2296                     ; 359         return 1;
-2298  0503 a601          	ld	a,#1
-2300  0505 20be          	jra	L06
-2301  0507               L367:
-2302                     ; 362     reg = read_register(RF_SETUP_REGISTER);
-2304  0507 a606          	ld	a,#6
-2305  0509 cd0087        	call	_read_register
-2307  050c 6b06          	ld	(OFST+0,sp),a
-2309                     ; 363     delay(10);
-2311  050e ae000a        	ldw	x,#10
-2312  0511 cd0000        	call	_delay
-2314                     ; 364     if (reg != DEFAULT_RF_SETUP) {
-2316  0514 7b06          	ld	a,(OFST+0,sp)
-2317  0516 a108          	cp	a,#8
-2318  0518 2704          	jreq	L567
-2319                     ; 365         return 1;
-2321  051a a601          	ld	a,#1
-2323  051c 20a7          	jra	L06
-2324  051e               L567:
-2325                     ; 368     reg = read_register(STATUS_REGISTER);
-2327  051e a607          	ld	a,#7
-2328  0520 cd0087        	call	_read_register
-2330  0523 6b06          	ld	(OFST+0,sp),a
-2332                     ; 369     if (reg != 0x0e) {
-2334  0525 7b06          	ld	a,(OFST+0,sp)
-2335  0527 a10e          	cp	a,#14
-2336  0529 2704          	jreq	L767
-2337                     ; 370         return 1;
-2339  052b a601          	ld	a,#1
-2341  052d 2096          	jra	L06
-2342  052f               L767:
-2343                     ; 372 		read_registerN(0x0A, regn, 5);
-2345  052f 4b05          	push	#5
-2346  0531 96            	ldw	x,sp
-2347  0532 1c0002        	addw	x,#OFST-4
-2348  0535 89            	pushw	x
-2349  0536 a60a          	ld	a,#10
-2350  0538 cd0107        	call	_read_registerN
-2352  053b 5b03          	addw	sp,#3
-2353                     ; 373     delay(10);
-2355  053d ae000a        	ldw	x,#10
-2356  0540 cd0000        	call	_delay
-2358                     ; 374     if (regn[0] != 0x1) return 1;
-2360  0543 7b01          	ld	a,(OFST-5,sp)
-2361  0545 a101          	cp	a,#1
-2362  0547 2706          	jreq	L177
-2365  0549 a601          	ld	a,#1
-2367  054b acc504c5      	jpf	L06
-2368  054f               L177:
-2369                     ; 375     else if (regn[1] != 0x1) return 1;
-2371  054f 7b02          	ld	a,(OFST-4,sp)
-2372  0551 a101          	cp	a,#1
-2373  0553 2706          	jreq	L577
-2376  0555 a601          	ld	a,#1
-2378  0557 acc504c5      	jpf	L06
-2379  055b               L577:
-2380                     ; 376     else if (regn[2] != 0x1) return 1;
-2382  055b 7b03          	ld	a,(OFST-3,sp)
-2383  055d a101          	cp	a,#1
-2384  055f 2706          	jreq	L1001
-2387  0561 a601          	ld	a,#1
-2389  0563 acc504c5      	jpf	L06
-2390  0567               L1001:
-2391                     ; 377     else if (regn[3] != 0x1) return 1;
-2393  0567 7b04          	ld	a,(OFST-2,sp)
-2394  0569 a101          	cp	a,#1
-2395  056b 2706          	jreq	L5001
-2398  056d a601          	ld	a,#1
-2400  056f acc504c5      	jpf	L06
-2401  0573               L5001:
-2402                     ; 378     else if (regn[4] != 0x1) return 1;
-2404  0573 7b05          	ld	a,(OFST-1,sp)
-2405  0575 a101          	cp	a,#1
-2406  0577 2706          	jreq	L377
-2409  0579 a601          	ld	a,#1
-2411  057b acc504c5      	jpf	L06
-2412  057f               L377:
-2413                     ; 379 	return 0;
-2415  057f 4f            	clr	a
-2417  0580 acc504c5      	jpf	L06
-2430                     	xdef	_test_rx
-2431                     	xdef	_test_tx
-2432                     	xdef	_SPI_DeInit_NRF
-2433                     	xdef	_SPI_Init_NRF
-2434                     	xdef	_rx_read
-2435                     	xdef	_tx_send
-2436                     	xdef	_nrf_deinit
-2437                     	xdef	_rx_init
-2438                     	xdef	_tx_init
-2439                     	xdef	_write_registerN
-2440                     	xdef	_read_registerN
-2441                     	xdef	_write_register
-2442                     	xdef	_read_register
-2443                     	xdef	_reset_status
-2444                     	xdef	_flush_tx
-2445                     	xdef	_flush_rx
-2446                     	xdef	_ce_low
-2447                     	xdef	_ce_high
-2448                     	xdef	_cs_low
-2449                     	xdef	_cs_high
-2450                     	xdef	_delay
-2451                     	xref	_SPI_GetFlagStatus
-2452                     	xref	_SPI_ReceiveData
-2453                     	xref	_SPI_SendData
-2454                     	xref	_SPI_Cmd
-2455                     	xref	_SPI_Init
-2456                     	xref	_SPI_DeInit
-2457                     	xref	_GPIO_WriteLow
-2458                     	xref	_GPIO_WriteHigh
-2459                     	xref	_GPIO_Init
-2460                     	xref	_GPIO_DeInit
-2479                     	end
+1895                     ; 272 uint8_t test_tx(void) {
+1896                     	switch	.text
+1897  03b3               _test_tx:
+1899  03b3 88            	push	a
+1900       00000001      OFST:	set	1
+1903                     ; 275     reg = read_register(STATUS_REGISTER);
+1905  03b4 a607          	ld	a,#7
+1906  03b6 cd0087        	call	_read_register
+1908  03b9 6b01          	ld	(OFST+0,sp),a
+1910                     ; 276 		delay(10);
+1912  03bb ae000a        	ldw	x,#10
+1913  03be cd0000        	call	_delay
+1915                     ; 277     delay(10);
+1917  03c1 ae000a        	ldw	x,#10
+1918  03c4 cd0000        	call	_delay
+1920                     ; 278     if (reg != 0x0e) {
+1922  03c7 7b01          	ld	a,(OFST+0,sp)
+1923  03c9 a10e          	cp	a,#14
+1924  03cb 2705          	jreq	L766
+1925                     ; 279         return 1;
+1927  03cd a601          	ld	a,#1
+1930  03cf 5b01          	addw	sp,#1
+1931  03d1 81            	ret
+1932  03d2               L766:
+1933                     ; 282 		reg = read_register(CONFIG_REGISTER);
+1935  03d2 4f            	clr	a
+1936  03d3 cd0087        	call	_read_register
+1938  03d6 6b01          	ld	(OFST+0,sp),a
+1940                     ; 283     delay(10);
+1942  03d8 ae000a        	ldw	x,#10
+1943  03db cd0000        	call	_delay
+1945                     ; 284     if (reg != DEFAULT_CONFIG_TX) {
+1947  03de 7b01          	ld	a,(OFST+0,sp)
+1948  03e0 a10e          	cp	a,#14
+1949  03e2 2705          	jreq	L176
+1950                     ; 285         return 1;
+1952  03e4 a601          	ld	a,#1
+1955  03e6 5b01          	addw	sp,#1
+1956  03e8 81            	ret
+1957  03e9               L176:
+1958                     ; 288     reg = read_register(SETUP_AW_REGISTER);
+1960  03e9 a603          	ld	a,#3
+1961  03eb cd0087        	call	_read_register
+1963  03ee 6b01          	ld	(OFST+0,sp),a
+1965                     ; 289     delay(10);
+1967  03f0 ae000a        	ldw	x,#10
+1968  03f3 cd0000        	call	_delay
+1970                     ; 290     if (reg != DEFAULT_SETUP_AW) {
+1972  03f6 7b01          	ld	a,(OFST+0,sp)
+1973  03f8 a103          	cp	a,#3
+1974  03fa 2705          	jreq	L376
+1975                     ; 291         return 1;
+1977  03fc a601          	ld	a,#1
+1980  03fe 5b01          	addw	sp,#1
+1981  0400 81            	ret
+1982  0401               L376:
+1983                     ; 294     reg = read_register(SETUP_RETR_REGISTER);
+1985  0401 a604          	ld	a,#4
+1986  0403 cd0087        	call	_read_register
+1988  0406 6b01          	ld	(OFST+0,sp),a
+1990                     ; 295     delay(10);
+1992  0408 ae000a        	ldw	x,#10
+1993  040b cd0000        	call	_delay
+1995                     ; 296     if (reg != DEFAULT_SETUP_RETR) {
+1997  040e 7b01          	ld	a,(OFST+0,sp)
+1998  0410 a101          	cp	a,#1
+1999  0412 2705          	jreq	L576
+2000                     ; 297         return 1;
+2002  0414 a601          	ld	a,#1
+2005  0416 5b01          	addw	sp,#1
+2006  0418 81            	ret
+2007  0419               L576:
+2008                     ; 300     reg = read_register(RF_CH_REGISTER);
+2010  0419 a605          	ld	a,#5
+2011  041b cd0087        	call	_read_register
+2013  041e 6b01          	ld	(OFST+0,sp),a
+2015                     ; 301     delay(10);
+2017  0420 ae000a        	ldw	x,#10
+2018  0423 cd0000        	call	_delay
+2020                     ; 302     if (reg != 120) {
+2022  0426 7b01          	ld	a,(OFST+0,sp)
+2023  0428 a178          	cp	a,#120
+2024  042a 2705          	jreq	L776
+2025                     ; 303         return 1;
+2027  042c a601          	ld	a,#1
+2030  042e 5b01          	addw	sp,#1
+2031  0430 81            	ret
+2032  0431               L776:
+2033                     ; 306     reg = read_register(RF_SETUP_REGISTER);
+2035  0431 a606          	ld	a,#6
+2036  0433 cd0087        	call	_read_register
+2038  0436 6b01          	ld	(OFST+0,sp),a
+2040                     ; 307     delay(10);
+2042  0438 ae000a        	ldw	x,#10
+2043  043b cd0000        	call	_delay
+2045                     ; 308     if (reg != DEFAULT_RF_SETUP) {
+2047  043e 7b01          	ld	a,(OFST+0,sp)
+2048  0440 a108          	cp	a,#8
+2049  0442 2705          	jreq	L107
+2050                     ; 309         return 1;
+2052  0444 a601          	ld	a,#1
+2055  0446 5b01          	addw	sp,#1
+2056  0448 81            	ret
+2057  0449               L107:
+2058                     ; 312     return 0;
+2060  0449 4f            	clr	a
+2063  044a 5b01          	addw	sp,#1
+2064  044c 81            	ret
+2100                     ; 315 uint8_t test_rx(void) {
+2101                     	switch	.text
+2102  044d               _test_rx:
+2104  044d 88            	push	a
+2105       00000001      OFST:	set	1
+2108                     ; 318     reg = read_register(CONFIG_REGISTER);
+2110  044e 4f            	clr	a
+2111  044f cd0087        	call	_read_register
+2113  0452 6b01          	ld	(OFST+0,sp),a
+2115                     ; 319     delay(10);
+2117  0454 ae000a        	ldw	x,#10
+2118  0457 cd0000        	call	_delay
+2120                     ; 320     if (reg != DEFAULT_CONFIG_RX) {
+2122  045a 7b01          	ld	a,(OFST+0,sp)
+2123  045c a10f          	cp	a,#15
+2124  045e 2705          	jreq	L127
+2125                     ; 321         return 1;
+2127  0460 a601          	ld	a,#1
+2130  0462 5b01          	addw	sp,#1
+2131  0464 81            	ret
+2132  0465               L127:
+2133                     ; 324     reg = read_register(EN_AA_REGISTER);
+2135  0465 a601          	ld	a,#1
+2136  0467 cd0087        	call	_read_register
+2138  046a 6b01          	ld	(OFST+0,sp),a
+2140                     ; 325     delay(10);
+2142  046c ae000a        	ldw	x,#10
+2143  046f cd0000        	call	_delay
+2145                     ; 326     if (reg != DEFAULT_EN_AA) {
+2147  0472 7b01          	ld	a,(OFST+0,sp)
+2148  0474 a101          	cp	a,#1
+2149  0476 2705          	jreq	L327
+2150                     ; 327         return 1;
+2152  0478 a601          	ld	a,#1
+2155  047a 5b01          	addw	sp,#1
+2156  047c 81            	ret
+2157  047d               L327:
+2158                     ; 330     reg = read_register(EN_RXADDR_REGISTER);
+2160  047d a602          	ld	a,#2
+2161  047f cd0087        	call	_read_register
+2163  0482 6b01          	ld	(OFST+0,sp),a
+2165                     ; 331     if (reg != DEFAULT_EN_RXADDR) {
+2167  0484 7b01          	ld	a,(OFST+0,sp)
+2168  0486 a101          	cp	a,#1
+2169  0488 2705          	jreq	L527
+2170                     ; 332         return 1;
+2172  048a a601          	ld	a,#1
+2175  048c 5b01          	addw	sp,#1
+2176  048e 81            	ret
+2177  048f               L527:
+2178                     ; 335     reg = read_register(SETUP_AW_REGISTER);
+2180  048f a603          	ld	a,#3
+2181  0491 cd0087        	call	_read_register
+2183  0494 6b01          	ld	(OFST+0,sp),a
+2185                     ; 336     delay(10);
+2187  0496 ae000a        	ldw	x,#10
+2188  0499 cd0000        	call	_delay
+2190                     ; 337     if (reg != DEFAULT_SETUP_AW) {
+2192  049c 7b01          	ld	a,(OFST+0,sp)
+2193  049e a103          	cp	a,#3
+2194  04a0 2705          	jreq	L727
+2195                     ; 338         return 1;
+2197  04a2 a601          	ld	a,#1
+2200  04a4 5b01          	addw	sp,#1
+2201  04a6 81            	ret
+2202  04a7               L727:
+2203                     ; 341     reg = read_register(RF_CH_REGISTER);
+2205  04a7 a605          	ld	a,#5
+2206  04a9 cd0087        	call	_read_register
+2208  04ac 6b01          	ld	(OFST+0,sp),a
+2210                     ; 342     delay(10);
+2212  04ae ae000a        	ldw	x,#10
+2213  04b1 cd0000        	call	_delay
+2215                     ; 343     if (reg != 120) {
+2217  04b4 7b01          	ld	a,(OFST+0,sp)
+2218  04b6 a178          	cp	a,#120
+2219  04b8 2705          	jreq	L137
+2220                     ; 344         return 1;
+2222  04ba a601          	ld	a,#1
+2225  04bc 5b01          	addw	sp,#1
+2226  04be 81            	ret
+2227  04bf               L137:
+2228                     ; 347     reg = read_register(RF_SETUP_REGISTER);
+2230  04bf a606          	ld	a,#6
+2231  04c1 cd0087        	call	_read_register
+2233  04c4 6b01          	ld	(OFST+0,sp),a
+2235                     ; 348     delay(10);
+2237  04c6 ae000a        	ldw	x,#10
+2238  04c9 cd0000        	call	_delay
+2240                     ; 349     if (reg != DEFAULT_RF_SETUP) {
+2242  04cc 7b01          	ld	a,(OFST+0,sp)
+2243  04ce a108          	cp	a,#8
+2244  04d0 2705          	jreq	L337
+2245                     ; 350         return 1;
+2247  04d2 a601          	ld	a,#1
+2250  04d4 5b01          	addw	sp,#1
+2251  04d6 81            	ret
+2252  04d7               L337:
+2253                     ; 353     reg = read_register(STATUS_REGISTER);
+2255  04d7 a607          	ld	a,#7
+2256  04d9 cd0087        	call	_read_register
+2258  04dc 6b01          	ld	(OFST+0,sp),a
+2260                     ; 354     if (reg != 0x0e) {
+2262  04de 7b01          	ld	a,(OFST+0,sp)
+2263  04e0 a10e          	cp	a,#14
+2264  04e2 2705          	jreq	L537
+2265                     ; 355         return 1;
+2267  04e4 a601          	ld	a,#1
+2270  04e6 5b01          	addw	sp,#1
+2271  04e8 81            	ret
+2272  04e9               L537:
+2273                     ; 357 	return 0;
+2275  04e9 4f            	clr	a
+2278  04ea 5b01          	addw	sp,#1
+2279  04ec 81            	ret
+2292                     	xdef	_test_rx
+2293                     	xdef	_test_tx
+2294                     	xdef	_SPI_DeInit_NRF
+2295                     	xdef	_SPI_Init_NRF
+2296                     	xdef	_rx_read
+2297                     	xdef	_tx_send
+2298                     	xdef	_nrf_deinit
+2299                     	xdef	_rx_init
+2300                     	xdef	_tx_init
+2301                     	xdef	_write_registerN
+2302                     	xdef	_read_registerN
+2303                     	xdef	_write_register
+2304                     	xdef	_read_register
+2305                     	xdef	_reset_status
+2306                     	xdef	_flush_tx
+2307                     	xdef	_flush_rx
+2308                     	xdef	_ce_low
+2309                     	xdef	_ce_high
+2310                     	xdef	_cs_low
+2311                     	xdef	_cs_high
+2312                     	xdef	_delay
+2313                     	xref	_SPI_GetFlagStatus
+2314                     	xref	_SPI_ReceiveData
+2315                     	xref	_SPI_SendData
+2316                     	xref	_SPI_Cmd
+2317                     	xref	_SPI_Init
+2318                     	xref	_SPI_DeInit
+2319                     	xref	_GPIO_WriteLow
+2320                     	xref	_GPIO_WriteHigh
+2321                     	xref	_GPIO_Init
+2322                     	xref	_GPIO_DeInit
+2341                     	end

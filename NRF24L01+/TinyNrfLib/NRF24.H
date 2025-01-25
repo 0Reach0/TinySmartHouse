@@ -1,5 +1,7 @@
 #include "stm8s.h"
-#include "stm8s_tim2.h"
+
+
+
 #ifndef _NRF24__H_
 #define _NRF24__H_
 
@@ -47,7 +49,8 @@
 #define DEFAULT_RF_CH       0x02
 #define DEFAULT_RF_SETUP    0x08
 #define DEFAULT_STATUS      0x70
-#define Default_PW_P0       0x01
+#define DEFAULT_PW_P0       0x01
+
 
 
 
