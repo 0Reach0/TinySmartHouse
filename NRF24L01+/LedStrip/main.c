@@ -9,17 +9,17 @@ void SetUp_GPIO(void)
 		GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST);
 }
 
-void init_NRF(void)
+void Init_NRF(void)
 {
 		uint8_t rxaddr[5] = {LED_ADDRESS, LED_ADDRESS, LED_ADDRESS, LED_ADDRESS, LED_ADDRESS};
     uint8_t status;
 		SPI_Init_NRF();
-		delay(1000);
+		delay(10);
     rx_init();
 		SET_PPE0_ADDR(rxaddr, 5);
-		delay(100);
+		delay(10);
 		SET_PPE0_SIZE(LED_PIPE_SIZE);
-		delay(100);
+		delay(10);
 		status = test_rx();
 		if(status!= 0)
 		{
@@ -54,26 +54,24 @@ void Set_Colour(uint8_t r, uint8_t g, uint8_t b)
     TIM2_SetCompare3(b);
 }
 
- 
-
 void main(void)
 {
 	uint8_t reg;
 	uint8_t buf[3];
 	SetUp_GPIO();
 	SetUp_TIM2_PWM();
-	init_NRF();
+	Init_NRF();
     while (1)
     {
         reg = read_register(STATUS_REGISTER);
-				delay(1000);
+				delay(10);
         if (reg & (1 << 6))
         {
 						GPIO_WriteLow(GPIOB, GPIO_PIN_5);
             rx_read(buf, 3);
 						Set_Colour(buf[0], buf[1], buf[2]);
             reset_status();
-            delay(100);
+            delay(10);
 						flush_rx();
 						GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
         }

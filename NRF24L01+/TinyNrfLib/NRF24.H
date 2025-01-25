@@ -71,7 +71,7 @@
 
 
 
-void delay(uint16_t n);
+void delay(uint16_t n);//only for nrf delays
 
 
 void cs_high(void);

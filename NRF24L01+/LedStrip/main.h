@@ -12,6 +12,8 @@
  
 void SetUp_GPIO(void);
 
+void Init_NRF(void);
+
 void SetUp_TIM2_PWM(void);
 
 void Set_Colour(uint8_t r, uint8_t g, uint8_t b);

@@ -943,8 +943,8 @@
 2349  0536 a60a          	ld	a,#10
 2350  0538 cd0107        	call	_read_registerN
 2352  053b 5b03          	addw	sp,#3
-2353                     ; 373     delay(100);
-2355  053d ae0064        	ldw	x,#100
+2353                     ; 373     delay(10);
+2355  053d ae000a        	ldw	x,#10
 2356  0540 cd0000        	call	_delay
 2358                     ; 374     if (regn[0] != 0x1) return 1;
 2360  0543 7b01          	ld	a,(OFST-5,sp)

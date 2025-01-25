@@ -370,7 +370,7 @@ uint8_t test_rx(void) {
         return 1;
     }
 		read_registerN(0x0A, regn, 5);
-    delay(100);
+    delay(10);
     if (regn[0] != 0x1) return 1;
     else if (regn[1] != 0x1) return 1;
     else if (regn[2] != 0x1) return 1;

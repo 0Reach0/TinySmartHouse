@@ -69,8 +69,8 @@ uint8_t waiting_for_click(uint8_t * row, uint8_t * col, uint8_t t); //t - timeou
 
 uint8_t swap_chanel(uint8_t chanel);
 
-void delay_ms(uint16_t ms);
-void init_pins(void);
+//void delay_ms(uint16_t ms);
+void Init_Pins(void);
 uint8_t Init_NRF(void);
 #ifdef LED_STRIP
 

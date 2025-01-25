@@ -11,7 +11,7 @@ uint8_t row;
 
 
 
-void init_pins(void) {
+void Init_Pins(void) {
 
 	//rows
     GPIO_Init(RC_PIN5, GPIO_MODE_OUT_PP_LOW_FAST); 
@@ -32,9 +32,9 @@ uint8_t Init_NRF(void)
 		uint8_t reg;
     SPI_Init_NRF();
     tx_init();
-    delay(1000);
+    delay(10);
     SET_TX_ADDR(txaddr, 5);
-    delay(100);
+    delay(10);
     reg = test_tx();
     if(reg!= 0)
     {
@@ -52,50 +52,34 @@ uint8_t waiting_for_click(uint8_t *row, uint8_t *col, uint8_t t) {
         if (GPIO_ReadInputPin(RC_PIN2) == RESET) { *row = 2; *col = 1; return 1; }
         if (GPIO_ReadInputPin(RC_PIN3) == RESET) { *row = 3; *col = 1; return 1; }
         if (GPIO_ReadInputPin(RC_PIN4) == RESET) { *row = 4; *col = 1; return 1; }
-        delay_ms(10);
+        delay(10);
 
         GPIO_WriteHigh(RC_PIN5); GPIO_WriteLow(RC_PIN6); GPIO_WriteHigh(RC_PIN7); GPIO_WriteHigh(RC_PIN8);
         if (GPIO_ReadInputPin(RC_PIN1) == RESET) { *row = 1; *col = 2; return 1; }
         if (GPIO_ReadInputPin(RC_PIN2) == RESET) { *row = 2; *col = 2; return 1; }
         if (GPIO_ReadInputPin(RC_PIN3) == RESET) { *row = 3; *col = 2; return 1; }
         if (GPIO_ReadInputPin(RC_PIN4) == RESET) { *row = 4; *col = 2; return 1; }
-        delay_ms(10);
+        delay(10);
 
         GPIO_WriteHigh(RC_PIN5); GPIO_WriteHigh(RC_PIN6); GPIO_WriteLow(RC_PIN7); GPIO_WriteHigh(RC_PIN8);
         if (GPIO_ReadInputPin(RC_PIN1) == RESET) { *row = 1; *col = 3; return 1; }
         if (GPIO_ReadInputPin(RC_PIN2) == RESET) { *row = 2; *col = 3; return 1; }
         if (GPIO_ReadInputPin(RC_PIN3) == RESET) { *row = 3; *col = 3; return 1; }
         if (GPIO_ReadInputPin(RC_PIN4) == RESET) { *row = 4; *col = 3; return 1; }
-        delay_ms(10);
+        delay(10);
 
         GPIO_WriteHigh(RC_PIN5); GPIO_WriteHigh(RC_PIN6); GPIO_WriteHigh(RC_PIN7); GPIO_WriteLow(RC_PIN8);
         if (GPIO_ReadInputPin(RC_PIN1) == RESET) { *row = 1; *col = 4; return 1; }
         if (GPIO_ReadInputPin(RC_PIN2) == RESET) { *row = 2; *col = 4; return 1; }
         if (GPIO_ReadInputPin(RC_PIN3) == RESET) { *row = 3; *col = 4; return 1; }
         if (GPIO_ReadInputPin(RC_PIN4) == RESET) { *row = 4; *col = 4; return 1; }
-        delay_ms(10);
+        delay(10);
 
         if (t != 0) {
             timeCounter++;
             if (timeCounter >= t) {
                 return 0;  
             }
-        }
-    }
-}
-
-
-
-
-
-
-
-
-void delay_ms(uint16_t ms) {
-    uint16_t i;
-		while (ms--) {
-        for (i = 0; i < 1600; i++) {
-            __asm("nop");
         }
     }
 }
@@ -109,7 +93,7 @@ uint8_t SWITCH_TO_LESDSTRIP_MODE(void) {
         uint8_t txaddr1[] = {LED_STRIP_ADDRESS, LED_STRIP_ADDRESS, LED_STRIP_ADDRESS, LED_STRIP_ADDRESS, LED_STRIP_ADDRESS};
 		CURRENT_MODE = STRIP_MOD;
     SET_TX_ADDR(txaddr1, 5);
-    delay(100);
+    delay(10);
     return 1;
 }
 
@@ -149,7 +133,7 @@ uint8_t procces_socket(uint8_t row, uint8_t col) {
     void POWERSAVE(void)
     {
 				nrf_deinit();
-				delay(1000);
+				delay(10);
         SPI_DeInit_NRF();
 				
         //rows
@@ -171,9 +155,31 @@ uint8_t procces_socket(uint8_t row, uint8_t col) {
 #endif
 
 
+#include "stm8s.h"
+
+
+void SystemClock_Config(void) {
+    // ???????? ?????????? ???????????????? ????????? (HSI)
+    CLK_HSICmd(ENABLE);
+
+    // ????, ???? HSI ???????????????
+    while (CLK_GetFlagStatus(CLK_FLAG_HSIRDY) == RESET);
+
+    // ??????????? ???????? ??? HSI
+    CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV8); // HSI = 16 ??? / 8 = 2 ???
+
+    // ??????????? ???????? ??? CPU
+    CLK_SYSCLKConfig(CLK_PRESCALER_CPUDIV128); // CPU = 2 ??? / 128 = 15.625 ???
+
+    // ????????????? HSI ??? ???????? ?????????? ????????? ???????
+    CLK_ClockSwitchConfig(CLK_SWITCHMODE_AUTO, CLK_SOURCE_HSI, DISABLE, CLK_CURRENTCLOCKSTATE_DISABLE);
+}
+
+
+
 void main(void) {
     uint8_t res;
-     init_pins();
+     Init_Pins();
 		GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST);
 		if(!Init_NRF()) {
         while(1);

@@ -137,14 +137,13 @@ INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 5)
 
 INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6) {
 	GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
-	delay(1);
     if (GPIO_ReadInputPin(RC_PIN1) == RESET) {
-          init_pins();
+				Init_Pins();
         if(!Init_NRF()) {
             while(1)
 						{
 						GPIO_WriteLow(GPIOB, GPIO_PIN_5);
-						delay_ms(1000);
+						delay(10);
 						GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
 						
 						}
