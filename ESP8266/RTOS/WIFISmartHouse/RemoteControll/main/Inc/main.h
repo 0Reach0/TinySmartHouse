@@ -1,5 +1,5 @@
-#ifndef AP_TRANSMITTER_H
-#define AP_TRANSMITTER_H
+#ifndef _MAIN_H_
+#define _MAIN_H_
 
 #include <stdio.h>
 #include <string.h>
@@ -10,4 +10,4 @@
 #include "TinyTGBot.h"
 
 
-#endif // AP_TRANSMITTER_H
+#endif // _MAIN_H_
