@@ -8,9 +8,8 @@
  device_t devices[MAX_STA];
  int device_count = 0;
  const char *TAG;
- uint8_t trusted_ids[] = {LED_STRIP_ID};
- uint8_t trusted_size = 1;
-
+ uint8_t trusted_size = 2;
+ uint8_t trusted_ids[] = {LED_STRIP_ID, SMART_SOCKET_ID};
 
 
 

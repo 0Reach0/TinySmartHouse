@@ -8,16 +8,16 @@
 #include "esp_netif.h"
 #include "esp_event.h"
 
-#define PWM_FREQUENCY 255
-#define PWM_PERIOD    255
-#define PWM_PIN_R     13
-#define PWM_PIN_G     12
-#define PWM_PIN_B     14
+#define CONTROLL_PIN     13
 
 #define IDENTIFY_REQUEST "IDENTIFY"
-#define ID 0xa7
+#define COMD_ON "on"
+#define COMD_OFF "of"
+
+#define ID 0xb8
 
 #define LED_GPIO GPIO_NUM_2
+#define CONTROLL_PIN GPIO_NUM_13
 
 #define WIFI_SSID "SmartHome"
 #define WIFI_PASSWORD "12345678"
@@ -39,21 +39,6 @@ struct sockaddr_in server_addr, client_addr;
 socklen_t addr_len = sizeof(client_addr);
 int optval = 1;
 
-uint32_t default_duties[3] = {100, 100, 100};
-float default_phase[3] = {0, 0, 0};
-
-void setup_pwm() {
-    pwm_init(PWM_PERIOD, default_duties, 3, (const uint32_t[]){PWM_PIN_R, PWM_PIN_G, PWM_PIN_B});
-    pwm_set_phases(default_phase);
-    pwm_start();
-}
-
-void set_pwm_color(uint8_t red, uint8_t green, uint8_t blue) {
-    pwm_set_duty(0, red);
-    pwm_set_duty(1, green);
-    pwm_set_duty(2, blue);
-    pwm_start();
-}
 
 void pair_with_host(wifi_event_sta_connected_t *event) {
     char buffer[32];
@@ -86,10 +71,9 @@ void pair_with_host(wifi_event_sta_connected_t *event) {
     int len = recv(client_sock, buffer, sizeof(buffer) - 1, 0);
     if (len > 0) {
         buffer[len] = '\0';
-        ESP_LOGI(TAG, "Received: %s", buffer);
+
         if (strcmp(buffer, IDENTIFY_REQUEST) == 0) {
             char response = ID;
-            ESP_LOGI(TAG, "GFGFGF");
             send(client_sock, &response, 1, 0);
         }
     }
@@ -167,7 +151,6 @@ uint8_t receive_data(uint8_t *data, uint8_t size) {
     while (true) {
         uint8_t len = recvfrom(sock, data, size, 0, (struct sockaddr *)&client_addr, &addr_len);
         if (len > 0) {
-            ESP_LOGI(TAG, "Received: %i, %i, %i", data[0], data[1], data[2]);
             break;
         }
     }
@@ -177,12 +160,24 @@ uint8_t receive_data(uint8_t *data, uint8_t size) {
 }
 
 void app_main() {
+    gpio_config_t io_conf = {};
+    io_conf.pin_bit_mask = (1ULL << CONTROLL_PIN); 
+        io_conf.mode = GPIO_MODE_OUTPUT;             
+    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;    
+    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
+    io_conf.intr_type = GPIO_INTR_DISABLE;
+    gpio_config(&io_conf);
     gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);
-    setup_pwm();
+    gpio_set_direction(CONTROLL_PIN, GPIO_MODE_OUTPUT);
     setup_sta();
-    uint8_t data[3];
+    uint8_t data[2];
     while (true) {
-        receive_data(data, 3);
-        set_pwm_color(data[0], data[1], data[2]);
+        receive_data(data, 2);
+        if(!strcmp((char *)data, COMD_ON)) {
+            gpio_set_level(CONTROLL_PIN, 0);
+        } else if(!strcmp((char *)data, COMD_OFF)) {
+            gpio_set_level(CONTROLL_PIN, 1);
+     
+        }
     }
 }

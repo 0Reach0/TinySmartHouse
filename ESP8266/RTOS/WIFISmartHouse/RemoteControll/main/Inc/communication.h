@@ -29,6 +29,7 @@
 #define TARGET_PATTERN     "set_up"     ///< Pattern used to identify target networks.
 #define MAX_SCAN_ATTEMPTS  10           ///< Maximum number of Wi-Fi scan attempts.
 #define LED_STRIP_ID       0xa7         ///< Identifier for the LED strip.
+#define SMART_SOCKET_ID    0xb8         ///< Identifier for the smart socket.
 #define IDENTIFY_REQUEST   "IDENTIFY"   ///< Request string for device identification.
 
 /* Data Structures */

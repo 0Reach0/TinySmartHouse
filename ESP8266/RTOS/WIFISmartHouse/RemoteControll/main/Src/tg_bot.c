@@ -139,8 +139,35 @@ void processCallback(const updateData  data)
             }
         }
     }
-    
 
+    else if(!strcmp(data.callbackData, SMART_SOCKET_ON_DATA))
+    {
+        uint32_t ip = 0;
+        for(uint8_t i = 0; i < device_count; i++)
+        {   
+            if(devices[i].id == SMART_SOCKET_ID)
+            {
+                ip = devices[i].ip;
+                send_udp("on",2, ip);
+                break;
+            }
+
+        }
+    }
+    else if(!strcmp(data.callbackData, SMART_SOCKET_OFF_DATA))
+    {
+        uint32_t ip = 0;
+        for(uint8_t i = 0; i < device_count; i++)
+        {   
+            if(devices[i].id == SMART_SOCKET_ID)
+            {
+                ip = devices[i].ip;
+                send_udp("of",2, ip);
+                break;
+            }
+        }
+    }
+    
 
 }
 
