@@ -5,7 +5,7 @@ Keyword=ST7Project
 Number=1.3
 
 [Project]
-Name=remotecontrol
+Name=ledstrip
 Toolset=STM8 Cosmic
 
 [Config]
@@ -14,19 +14,19 @@ Toolset=STM8 Cosmic
 
 [Config.0]
 ConfigName=Debug
-Target=remotecontrol.elf
+Target=ledstrip.elf
 OutputFolder=Debug
 Debug=$(TargetFName)
 
 [Config.1]
 ConfigName=Release
-Target=remotecontrol.elf
+Target=ledstrip.elf
 OutputFolder=Release
 Debug=$(TargetFName)
 
 [Root]
 ElemType=Project
-PathName=remotecontrol
+PathName=ledstrip
 Child=Root.Source Files
 Config.0=Root.Config.0
 Config.1=Root.Config.1
@@ -54,7 +54,7 @@ Settings.1.7=Root.Config.1.Settings.7
 Settings.1.8=Root.Config.1.Settings.8
 
 [Root.Config.0.Settings.0]
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.100.0=ST Assembler Linker
 String.100.1=ST7 Cosmic
 String.100.2=STM8 Cosmic
@@ -66,56 +66,58 @@ String.103.0=
 String.104.0=Hstm8
 String.105.0=Lib
 String.106.0=Debug
-String.107.0=remotecontrol.elf
+String.107.0=ledstrip.elf
 Int.108=0
 
 [Root.Config.0.Settings.1]
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.100.0=$(TargetFName)
 String.101.0=
-String.103.0=.\;..;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src;..\..\tinynrflib;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc;..\..\stm8s_spl\project\stm8s_stdperiph_template;
+String.102.0=
+String.103.0=.\;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc;..;..\..\tinynrflib;..\..\stm8s_spl\project\stm8s_stdperiph_template;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src;
 
 [Root.Config.0.Settings.2]
 String.2.0=
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.100.0=STM8S103F3P
 
 [Root.Config.0.Settings.3]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\stm8s_spl\project\stm8s_stdperiph_template  -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc  -i..\..\tinynrflib  -i..  -customDbg -customDebCompat -customOpt-no -customLst -l +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt+compact -customC-pp -customLst -l -i..\..\stm8s_spl\project\stm8s_stdperiph_template -i..\..\tinynrflib -i.. -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,14,36,12
 
 [Root.Config.0.Settings.4]
 String.2.0=Assembling $(InputFile)...
 String.3.0=castm8 -xx -l $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Config.0.Settings.5]
 String.2.0=Running Pre-Link step
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.8.0=
 
 [Root.Config.0.Settings.6]
 String.2.0=Running Linker
-String.3.0=clnk -customMapFile -customMapFile-m $(OutputPath)$(TargetSName).map -fakeRunConv  -fakeInteger  -fakeSemiAutoGen  $(ToolsetLibOpts)  -o $(OutputPath)$(TargetSName).sm8 -fakeOutFile$(ProjectSFile).elf -customCfgFile $(OutputPath)$(TargetSName).lkf -fakeVectFilestm8_interrupt_vector.c    -fakeStartupcrtsi0.sm8 
+String.3.0=clnk -customMapFile -customMapFile-m $(OutputPath)$(TargetSName).map -fakeRunConv -fakeInteger -fakeSemiAutoGen $(ToolsetLibOpts) -o $(OutputPath)$(TargetSName).sm8 -fakeOutFile$(ProjectSFile).elf -customCfgFile $(OutputPath)$(TargetSName).lkf -fakeVectFilestm8_interrupt_vector.c -fakeStartupcrtsi0.sm8 
 String.3.1=cvdwarf $(OutputPath)$(TargetSName).sm8 -fakeVectAddr0x8000
 String.4.0=$(OutputPath)$(TargetFName)
 String.5.0=$(OutputPath)$(TargetSName).map $(OutputPath)$(TargetSName).st7 $(OutputPath)$(TargetSName).s19
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
+String.100.0=
 String.101.0=crtsi.st7
-String.102.0=+seg .const -b 0x8080 -m 0x1f80  -n .const -it 
-String.102.1=+seg .text -a .const  -n .text 
-String.102.2=+seg .eeprom -b 0x4000 -m 0x280  -n .eeprom 
-String.102.3=+seg .bsct -b 0x0 -m 0x100  -n .bsct 
-String.102.4=+seg .ubsct -a .bsct  -n .ubsct 
-String.102.5=+seg .bit -a .ubsct  -n .bit -id 
-String.102.6=+seg .share -a .bit  -n .share -is 
-String.102.7=+seg .data -b 0x100 -m 0x100  -n .data 
-String.102.8=+seg .bss -a .data  -n .bss 
+String.102.0=+seg .const -b 0x8080 -m 0x1f80 -n .const -it 
+String.102.1=+seg .text -a .const -n .text 
+String.102.2=+seg .eeprom -b 0x4000 -m 0x280 -n .eeprom 
+String.102.3=+seg .bsct -b 0x0 -m 0x100 -n .bsct 
+String.102.4=+seg .ubsct -a .bsct -n .ubsct 
+String.102.5=+seg .bit -a .ubsct -n .bit -id 
+String.102.6=+seg .share -a .bit -n .share -is 
+String.102.7=+seg .data -b 0x100 -m 0x100 -n .data 
+String.102.8=+seg .bss -a .data -n .bss
 String.103.0=Code,Constants[0x8080-0x9fff]=.const,.text
 String.103.1=Eeprom[0x4000-0x427f]=.eeprom
 String.103.2=Zero Page[0x0-0xff]=.bsct,.ubsct,.bit,.share
@@ -127,14 +129,14 @@ Int.1=0
 [Root.Config.0.Settings.7]
 String.2.0=Running Post-Build step
 String.3.0=chex -o $(OutputPath)$(TargetSName).s19 $(OutputPath)$(TargetSName).sm8
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Config.0.Settings.8]
 String.2.0=Performing Custom Build on $(InputFile)
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Config.1.Settings.0]
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.100.0=ST Assembler Linker
 String.100.1=ST7 Cosmic
 String.100.2=STM8 Cosmic
@@ -146,55 +148,55 @@ String.103.0=
 String.104.0=Hstm8
 String.105.0=Lib
 String.106.0=Release
-String.107.0=remotecontrol.elf
+String.107.0=ledstrip.elf
 Int.108=0
 
 [Root.Config.1.Settings.1]
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.100.0=$(TargetFName)
 String.101.0=
-String.103.0=.\;..;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src;..\..\tinynrflib;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc;..\..\stm8s_spl\project\stm8s_stdperiph_template;
+String.103.0=.\;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc;..;..\..\tinynrflib;..\..\stm8s_spl\project\stm8s_stdperiph_template;..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src;
 
 [Root.Config.1.Settings.2]
 String.2.0=
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.100.0=STM8S103F3P
 
 [Root.Config.1.Settings.3]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\stm8s_spl\project\stm8s_stdperiph_template  -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc  -i..\..\tinynrflib  -i..  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\..\stm8s_spl\project\stm8s_stdperiph_template -i..\..\tinynrflib -i.. -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Config.1.Settings.4]
 String.2.0=Assembling $(InputFile)...
 String.3.0=castm8 $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Config.1.Settings.5]
 String.2.0=Running Pre-Link step
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Config.1.Settings.6]
 String.2.0=Running Linker
-String.3.0=clnk -fakeRunConv  -fakeInteger  -fakeSemiAutoGen  $(ToolsetLibOpts)  -o $(OutputPath)$(TargetSName).sm8 -fakeOutFile$(ProjectSFile).elf -customCfgFile $(OutputPath)$(TargetSName).lkf -fakeVectFilestm8_interrupt_vector.c    -fakeStartupcrtsi0.sm8 
+String.3.0=clnk -fakeRunConv -fakeInteger -fakeSemiAutoGen $(ToolsetLibOpts) -o $(OutputPath)$(TargetSName).sm8 -fakeOutFile$(ProjectSFile).elf -customCfgFile $(OutputPath)$(TargetSName).lkf -fakeVectFilestm8_interrupt_vector.c -fakeStartupcrtsi0.sm8 
 String.3.1=cvdwarf $(OutputPath)$(TargetSName).sm8 -fakeVectAddr0x8000
 String.4.0=$(OutputPath)$(TargetFName)
 String.5.0=$(OutputPath)$(TargetSName).map $(OutputPath)$(TargetSName).st7 $(OutputPath)$(TargetSName).s19
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.101.0=crtsi.st7
-String.102.0=+seg .const -b 0x8080 -m 0x1f80  -n .const -it 
-String.102.1=+seg .text -a .const  -n .text 
-String.102.2=+seg .eeprom -b 0x4000 -m 0x280  -n .eeprom 
-String.102.3=+seg .bsct -b 0x0 -m 0x100  -n .bsct 
-String.102.4=+seg .ubsct -a .bsct  -n .ubsct 
-String.102.5=+seg .bit -a .ubsct  -n .bit -id 
-String.102.6=+seg .share -a .bit  -n .share -is 
-String.102.7=+seg .data -b 0x100 -m 0x100  -n .data 
-String.102.8=+seg .bss -a .data  -n .bss 
+String.102.0=+seg .const -b 0x8080 -m 0x1f80 -n .const -it 
+String.102.1=+seg .text -a .const -n .text 
+String.102.2=+seg .eeprom -b 0x4000 -m 0x280 -n .eeprom 
+String.102.3=+seg .bsct -b 0x0 -m 0x100 -n .bsct 
+String.102.4=+seg .ubsct -a .bsct -n .ubsct 
+String.102.5=+seg .bit -a .ubsct -n .bit -id 
+String.102.6=+seg .share -a .bit -n .share -is 
+String.102.7=+seg .data -b 0x100 -m 0x100 -n .data 
+String.102.8=+seg .bss -a .data -n .bss
 String.103.0=Code,Constants[0x8080-0x9fff]=.const,.text
 String.103.1=Eeprom[0x4000-0x427f]=.eeprom
 String.103.2=Zero Page[0x0-0xff]=.bsct,.ubsct,.bit,.share
@@ -206,11 +208,11 @@ Int.1=0
 [Root.Config.1.Settings.7]
 String.2.0=Running Post-Build step
 String.3.0=chex -o $(OutputPath)$(TargetSName).s19 $(OutputPath)$(TargetSName).sm8
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Config.1.Settings.8]
 String.2.0=Performing Custom Build on $(InputFile)
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Source Files]
 ElemType=Folder
@@ -233,58 +235,58 @@ Settings.1.2=Root.Source Files.Config.1.Settings.2
 Settings.1.3=Root.Source Files.Config.1.Settings.3
 
 [Root.Source Files.Config.0.Settings.0]
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.8.0=Debug
 Int.0=0
 Int.1=0
 
 [Root.Source Files.Config.0.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\stm8s_spl\project\stm8s_stdperiph_template  -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc  -i..\..\tinynrflib  -i..  -customDbg -customDebCompat -customOpt-no -customLst -l +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt+compact -customC-pp -customLst -l -i..\..\stm8s_spl\project\stm8s_stdperiph_template -i..\..\tinynrflib -i.. -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,14,36,12
 
 [Root.Source Files.Config.0.Settings.2]
 String.2.0=Assembling $(InputFile)...
 String.3.0=castm8 -xx -l $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Source Files.Config.0.Settings.3]
 String.2.0=Performing Custom Build on $(InputFile)
 String.3.0=
 String.4.0=
 String.5.0=
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Source Files.Config.1.Settings.0]
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.8.0=Release
 Int.0=0
 Int.1=0
 
 [Root.Source Files.Config.1.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\stm8s_spl\project\stm8s_stdperiph_template  -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc  -i..\..\tinynrflib  -i..  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\..\stm8s_spl\project\stm8s_stdperiph_template -i..\..\tinynrflib -i.. -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Source Files.Config.1.Settings.2]
 String.2.0=Assembling $(InputFile)...
 String.3.0=castm8 $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Source Files.Config.1.Settings.3]
 String.2.0=Performing Custom Build on $(InputFile)
 String.3.0=
 String.4.0=
 String.5.0=
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Source Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8s_awu.c]
 ElemType=File
@@ -319,36 +321,26 @@ Next=Root.Source Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8
 [Root.Source Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8s_spi.c]
 ElemType=File
 PathName=..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8s_spi.c
+Next=Root.Source Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8s_tim2.c
+
+[Root.Source Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8s_tim2.c]
+ElemType=File
+PathName=..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\src\stm8s_tim2.c
 Next=Root.Source Files...\..\tinynrflib\nrf24.c
 
 [Root.Source Files...\..\tinynrflib\nrf24.c]
 ElemType=File
 PathName=..\..\tinynrflib\nrf24.c
-Next=Root.Source Files...\ledstrip.c
-
-[Root.Source Files...\ledstrip.c]
-ElemType=File
-PathName=..\ledstrip.c
 Next=Root.Source Files...\main.c
 
 [Root.Source Files...\main.c]
 ElemType=File
 PathName=..\main.c
-Next=Root.Source Files...\smartsocket.c
-
-[Root.Source Files...\smartsocket.c]
-ElemType=File
-PathName=..\smartsocket.c
 Next=Root.Source Files.stm8_interrupt_vector.c
 
 [Root.Source Files.stm8_interrupt_vector.c]
 ElemType=File
 PathName=stm8_interrupt_vector.c
-Next=Root.Source Files.stm8s_it.c
-
-[Root.Source Files.stm8s_it.c]
-ElemType=File
-PathName=stm8s_it.c
 
 [Root.Include Files]
 ElemType=Folder
@@ -370,58 +362,58 @@ Settings.1.2=Root.Include Files.Config.1.Settings.2
 Settings.1.3=Root.Include Files.Config.1.Settings.3
 
 [Root.Include Files.Config.0.Settings.0]
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.8.0=Debug
 Int.0=0
 Int.1=0
 
 [Root.Include Files.Config.0.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\stm8s_spl\project\stm8s_stdperiph_template  -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc  -i..\..\tinynrflib  -i..  -customDbg -customDebCompat -customOpt-no -customLst -l +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 +mods0 -customDebCompat -customOpt+compact -customC-pp -customLst -l -i..\..\stm8s_spl\project\stm8s_stdperiph_template -i..\..\tinynrflib -i.. -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,14,36,12
 
 [Root.Include Files.Config.0.Settings.2]
 String.2.0=Assembling $(InputFile)...
 String.3.0=castm8 -xx -l $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Include Files.Config.0.Settings.3]
 String.2.0=Performing Custom Build on $(InputFile)
 String.3.0=
 String.4.0=
 String.5.0=
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Include Files.Config.1.Settings.0]
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 String.8.0=Release
 Int.0=0
 Int.1=0
 
 [Root.Include Files.Config.1.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..\..\stm8s_spl\project\stm8s_stdperiph_template  -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc  -i..\..\tinynrflib  -i..  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\..\stm8s_spl\project\stm8s_stdperiph_template -i..\..\tinynrflib -i.. -i..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Include Files.Config.1.Settings.2]
 String.2.0=Assembling $(InputFile)...
 String.3.0=castm8 $(ToolsetIncOpts) -o$(IntermPath)$(InputName).$(ObjectExt) $(InputFile)
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Include Files.Config.1.Settings.3]
 String.2.0=Performing Custom Build on $(InputFile)
 String.3.0=
 String.4.0=
 String.5.0=
-String.6.0=2025,1,14,20,12,18
+String.6.0=2025,1,12,12,17,49
 
 [Root.Include Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc\stm8s.h]
 ElemType=File
@@ -461,6 +453,11 @@ Next=Root.Include Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc\stm
 [Root.Include Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc\stm8s_spi.h]
 ElemType=File
 PathName=..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc\stm8s_spi.h
+Next=Root.Include Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc\stm8s_tim2.h
+
+[Root.Include Files...\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc\stm8s_tim2.h]
+ElemType=File
+PathName=..\..\stm8s_spl\libraries\stm8s_stdperiph_driver\inc\stm8s_tim2.h
 Next=Root.Include Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_conf.h
 
 [Root.Include Files...\..\stm8s_spl\project\stm8s_stdperiph_template\stm8s_conf.h]
@@ -471,23 +468,8 @@ Next=Root.Include Files...\..\tinynrflib\nrf24.h
 [Root.Include Files...\..\tinynrflib\nrf24.h]
 ElemType=File
 PathName=..\..\tinynrflib\nrf24.h
-Next=Root.Include Files...\ledstrip.h
-
-[Root.Include Files...\ledstrip.h]
-ElemType=File
-PathName=..\ledstrip.h
 Next=Root.Include Files...\main.h
 
 [Root.Include Files...\main.h]
 ElemType=File
 PathName=..\main.h
-Next=Root.Include Files...\smartsocket.h
-
-[Root.Include Files...\smartsocket.h]
-ElemType=File
-PathName=..\smartsocket.h
-Next=Root.Include Files.stm8s_it.h
-
-[Root.Include Files.stm8s_it.h]
-ElemType=File
-PathName=stm8s_it.h

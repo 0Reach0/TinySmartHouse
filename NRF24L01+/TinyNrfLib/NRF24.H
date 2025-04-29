@@ -58,15 +58,16 @@
  #define DEFAULT_RF_SETUP    0x08 ///< Default RF Setup value
  #define DEFAULT_STATUS      0x70 ///< Default Status value
  #define DEFAULT_PW_P0       0x01 ///< Default RX Payload Width Pipe 0 value
- 
- // Reset configuration values for NRF24 module
+ #define DEFAULT_AW          5    ///< Default AW - addres width
+
+// Reset configuration values for NRF24 module
  #define RESET_CONFIG 			0x08 ///< Reset Configuration register value
- #define RESET_EN_AA 			0x00 ///< Reset Enable Auto Ack value
+ #define RESET_EN_AA 			  0x00 ///< Reset Enable Auto Ack value
  #define RESET_RXADDR 			0x00 ///< Reset RX Address value
  #define RESET_SETUP_AW 		0x03 ///< Reset Address Width value
  #define RESET_SETUP_RETR 	0x03 ///< Reset Retransmission Setup value
- #define RESET_RF_CH 		  0x02 ///< Reset RF Channel value
- #define RESET_RF_SETUP	  0x0F ///< Reset RF Setup value
+ #define RESET_RF_CH 		    0x02 ///< Reset RF Channel value
+ #define RESET_RF_SETUP	    0x0F ///< Reset RF Setup value
  #define RESET_STATUS 		  0x70 ///< Reset Status value
  #define RX_ADDR_P0 				0xE7 ///< RX Address Pipe 0 reset value
  #define TX_ADDR						0xE7 ///< TX Address reset value

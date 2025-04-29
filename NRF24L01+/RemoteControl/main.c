@@ -1,15 +1,28 @@
 #include "stm8s.h"
 #include "main.h"
+#inclide "ledstrip.h"
+#include "smartsocket.h"
+#include "string.h"
+#include "tynitp.h"
 
 //GLOBAL VARIABLES
 uint8_t CURRENT_MODE = DEFAULT_MOD;
- uint8_t txaddr[5] = {DEFAULT_ADDRESS, DEFAULT_ADDRESS, DEFAULT_ADDRESS,  DEFAULT_ADDRESS, DEFAULT_ADDRESS};
+ uint8_t txaddr *;
 uint8_t row;
-		uint8_t col;
+uint8_t col;
+struct dataPackage dPack;
 //end GLOBAL VARIABLES
 
 
 
+void delay_ms(uint32_t ms) {
+    uint32_t cycles_per_ms = PROC_FREQ / 1000;
+    volatile uint32_t cycles = cycles_per_ms * ms;
+
+    while (cycles--) {
+        __asm__ volatile ("nop");
+    }
+}
 
 void Init_Pins(void) {
 
@@ -85,49 +98,6 @@ uint8_t waiting_for_click(uint8_t *row, uint8_t *col, uint8_t t) {
 }
 
 
-#ifdef LED_STRIP
-
-
-
-uint8_t SWITCH_TO_LESDSTRIP_MODE(void) {
-        uint8_t txaddr1[] = {LED_STRIP_ADDRESS, LED_STRIP_ADDRESS, LED_STRIP_ADDRESS, LED_STRIP_ADDRESS, LED_STRIP_ADDRESS};
-		CURRENT_MODE = STRIP_MOD;
-    SET_TX_ADDR(txaddr1, 5);
-    delay(10);
-    return 1;
-}
-
-
-uint8_t procces_LEDStrip(uint8_t row, uint8_t col) {
-    uint8_t buf[3];
-		
-if (RED_COLOUR_BUTTON) {
-    uint8_t buf[] = {254, 0, 0};
-    tx_send(buf, 3);
-} 
-else if (GREEN_COLOUR_BUTTON) {
-    uint8_t buf[] = {0, 254, 0};
-    tx_send(buf, 3);
-} 
-else if (BLUE_COLOUR_BUTTON) {
-    uint8_t buf[] = {0, 0, 254};
-    tx_send(buf, 3);
-}
-    return 1;
-}
-
-#endif //LED_STRIP
-
-
-#ifdef SOCKET
-
-uint8_t procces_socket(uint8_t row, uint8_t col) {
-    // Process socket
-    return 1;
-}
-
-#endif //SOCKET
-
 
 #ifdef POWER_SAVE_MODE
     void POWERSAVE(void)
@@ -159,19 +129,14 @@ uint8_t procces_socket(uint8_t row, uint8_t col) {
 
 
 void SystemClock_Config(void) {
-    // ???????? ?????????? ???????????????? ????????? (HSI)
     CLK_HSICmd(ENABLE);
 
-    // ????, ???? HSI ???????????????
     while (CLK_GetFlagStatus(CLK_FLAG_HSIRDY) == RESET);
 
-    // ??????????? ???????? ??? HSI
-    CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV8); // HSI = 16 ??? / 8 = 2 ???
+    CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV8);
+		
+		CLK_SYSCLKConfig(CLK_PRESCALER_CPUDIV128);
 
-    // ??????????? ???????? ??? CPU
-    CLK_SYSCLKConfig(CLK_PRESCALER_CPUDIV128); // CPU = 2 ??? / 128 = 15.625 ???
-
-    // ????????????? HSI ??? ???????? ?????????? ????????? ???????
     CLK_ClockSwitchConfig(CLK_SWITCHMODE_AUTO, CLK_SOURCE_HSI, DISABLE, CLK_CURRENTCLOCKSTATE_DISABLE);
 }
 
@@ -211,7 +176,15 @@ void main(void) {
 
 
 			#ifdef SOCKET
-                if(SOCKET_MOD_BUTTON) continue;
+                if(SOCKET_MOD_BUTTON)
+								{
+									SWITCH_TO_SOCKET_MODE();
+								}
+								else if(CURRENT_MODE == SOCKET_MOD) {
+                    procces_socket(row, col);
+										GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
+                    continue;
+                }
             #endif //SOCKET
 
 

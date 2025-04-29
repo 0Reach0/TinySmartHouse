@@ -6,7 +6,3 @@ Keyword=ST7Workspace-V0.7
 [Project0]
 Filename=remotecontrol.stp
 Dependencies=
-[Options]
-ActiveProject=remotecontrol
-ActiveConfig=Debug
-AddSortedElements=1

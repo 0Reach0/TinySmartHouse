@@ -10,6 +10,10 @@
  * socket control, and power-saving operations.
  */
 
+
+#define PROC_FREQ 16000000UL
+
+
 #include "NRF24.H"  
 
 /* Remote Control Pins (modify these according to your hardware) */
@@ -26,23 +30,11 @@
 #define POWER_SAVE_MODE           ///< Enable power save mode
 #define POWER_SAVE_BUTTON (col == 1 && row == 4)  ///< Macro to detect power save button press
 
-#define DEFAULT_MOD 0x00          ///< Default operating mode
-#define DEFAULT_ADDRESS 0x01      ///< Default device address
+#define DEFAULT_MOD LED_STRIP_MOD         ///< Default operating mode
+#define DEFAULT_ADDRESS ledStripAddr      ///< Default device address
 
-/* LED Strip Control Definitions */
-#define LED_STRIP                 ///< Enable LED strip functionality
-#define STRIP_MOD  0x00           ///< LED strip operating mode
-#define LED_STRIP_ADDRESS 0x01    ///< LED strip address
-#define STRIP_MOD_BUTTON (col == 4 && row == 1)   ///< Macro for LED strip mode button
-#define RED_COLOUR_BUTTON   (col == 1 && row == 1)  ///< Macro for red colour selection
-#define GREEN_COLOUR_BUTTON (col == 1 && row == 2)  ///< Macro for green colour selection
-#define BLUE_COLOUR_BUTTON  (col == 1 && row == 3)  ///< Macro for blue colour selection
 
-/* Socket Control Definitions */
-#define SOCKET                    ///< Enable socket functionality
-#define SOCKET_MOD 0x01           ///< Socket operating mode
-#define SOCKET_ADDRESS 0x02       ///< Socket address
-#define SOCKET_MOD_BUTTON (col == 2 && row == 4)    ///< Macro for socket mode button
+
 
 /**
  * @brief Waits for a button click on the remote control.
@@ -56,6 +48,7 @@
  */
 uint8_t waiting_for_click(uint8_t * row, uint8_t * col, uint8_t t);
 
+
 /**
  * @brief Swaps the current channel.
  *
@@ -66,12 +59,33 @@ uint8_t waiting_for_click(uint8_t * row, uint8_t * col, uint8_t t);
  */
 uint8_t swap_chanel(uint8_t chanel);
 
+
+uint8_t *serializePackage(struct dataPackage *pkg, int *size);
+
+
+void deserializePackage(struct dataPackage *pkg, uint8_t *buffer);
+
+
+uint8_t send_event(uint8_t device, uint8_t d_size, uint8_t type,struct eventData * data);
+
+
+uint8_t check_for_updates();
+
+
+uint8_t process_event();
+
+
+uint8_t process_get_event(struct dataPackage * data);
+
+
+uint8_t process_send_event(struct dataPackage * data);
 /**
  * @brief Initializes the GPIO pins for the remote control.
  *
  * Configures the required pins based on the hardware setup.
  */
 void Init_Pins(void);
+
 
 /**
  * @brief Initializes the NRF24 radio module.
@@ -82,31 +96,6 @@ void Init_Pins(void);
  */
 uint8_t Init_NRF(void);
 
-#ifdef LED_STRIP
-/**
- * @brief Processes LED strip commands.
- *
- * Handles LED strip control based on the pressed button's row and column.
- *
- * @param row The row number of the pressed button.
- * @param col The column number of the pressed button.
- * @return uint8_t Status code indicating success or failure.
- */
-uint8_t procces_LEDStrip(uint8_t row, uint8_t col);
-#endif // LED_STRIP
-
-#ifdef SOCKET
-/**
- * @brief Processes socket commands.
- *
- * Handles socket control based on the pressed button's row and column.
- *
- * @param row The row number of the pressed button.
- * @param col The column number of the pressed button.
- * @return uint8_t Status code indicating success or failure.
- */
-uint8_t procces_socket(uint8_t row, uint8_t col);
-#endif // SOCKET
 
 #ifdef POWER_SAVE_MOD 
 /**
@@ -115,6 +104,8 @@ uint8_t procces_socket(uint8_t row, uint8_t col);
  * Reduces power consumption by putting the system into a low-power state.
  */
 void POWERSAVE(void);
+
+
 #endif // POWER_SAVE_MOD
 
 #endif //_MAIN__H_
