@@ -7,7 +7,6 @@
 
 //GLOBAL VARIABLES
 uint8_t CURRENT_MODE = DEFAULT_MOD;
-uint8_t *txaddr;
 uint8_t row;
 uint8_t col;
 struct dataPackage dPack;
@@ -154,10 +153,10 @@ void main(void) {
 						#endif
             #ifdef LED_STRIP
                 if(STRIP_MOD_BUTTON) {
-                    SWITCH_TO_LESDSTRIP_MODE();
+                    SWITCH_TO_LEDSTRIP_MODE();
                 }
                 else if(CURRENT_MODE == STRIP_MOD) {
-                    procces_LEDStrip(row, col);
+                    process_LEDStrip(row, col);
 										GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
                     continue;
                 }

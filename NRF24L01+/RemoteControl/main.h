@@ -33,9 +33,6 @@
 #define DEFAULT_ADDRESS ledStripAddr      ///< Default device address
 
 
-extern uint8_t *txaddr;
-
-
 /**
  * @brief Waits for a button click on the remote control.
  *

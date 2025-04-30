@@ -19,37 +19,18 @@ uint8_t SWITCH_TO_SOCKET_MODE(void)
 }
 
 
-struct eventData *create_Socket_package(uint8_t state) {
-    struct eventData *package = (struct eventData *)malloc(sizeof(struct eventData));
-    if (!package) return NULL;
-
-    package->size = 1;
-    package->data = (uint8_t *)malloc(package->size);
-    if (!package->data) {
-        free(package);
-        return NULL;
-    }
-
-    package->data[0] = state ? 1 : 0;
-
-    return package;
-}
-
-
 uint8_t procces_socket(uint8_t row, uint8_t col) {
-    struct eventData *socket_package = NULL;
+    uint8_t socket_package[1];
 
     if (SOCKET_ON_BUTTON)
-        socket_package = create_Socket_package(1);
+        socket_packag[0] = 1;
     else if (SOCKET_OFF_BUTTON)
-        socket_package = create_Socket_package(0);
+        socket_package[0] = 0;
 
     if (!socket_package) return 0;
 
-    uint8_t result = send_event(socketAddr, SOCKET_ADDRESS_SIZE, DATA_EVENT, socket_package, 32);
-
-    free(socket_package->data);
-    free(socket_package);
+		uint8_t result = send_event(smartSocketAddr, LED_STRIP_ADDRESS_SIZE,
+                                socket_package, sizeof(socket_package), SMART_SOCKET_DATA_SIZE);
 
     return result;
 }

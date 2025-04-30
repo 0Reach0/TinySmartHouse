@@ -1,6 +1,7 @@
 #include "nrf24.h"
 
-
+uint8_t* txaddr;
+uint8_t * rxaddr;
 
 void delay(uint16_t n) {
     uint16_t i = 0;

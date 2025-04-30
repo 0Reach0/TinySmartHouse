@@ -44,7 +44,7 @@ ptn_Child33=Bar-32
 
 [WorkState_v1_2.DockState.Bar-0]
 BarID=59419
-Bars=22
+Bars=25
 Bar#0=0
 Bar#1=59647
 Bar#2=0
@@ -67,6 +67,9 @@ Bar#18=0
 Bar#19=32768
 Bar#20=0
 Bar#21=0
+Bar#22=0
+Bar#23=0
+Bar#24=0
 Style=0
 ExStyle=0
 PrevFloating=False
@@ -370,10 +373,10 @@ BarID=59392
 YPos=28
 Docking=True
 MRUDockID=0
-MRUDockLeftPos=-1
-MRUDockTopPos=28
-MRUDockRightPos=147
-MRUDockBottomPos=58
+MRUDockLeftPos=8
+MRUDockTopPos=31
+MRUDockRightPos=156
+MRUDockBottomPos=61
 MRUFloatStyle=8196
 MRUFloatXPos=-1
 MRUFloatYPos=0
@@ -411,9 +414,9 @@ MRUWidth=566
 Docking=True
 MRUDockID=59419
 MRUDockLeftPos=176
-MRUDockTopPos=28
+MRUDockTopPos=31
 MRUDockRightPos=759
-MRUDockBottomPos=58
+MRUDockBottomPos=61
 MRUFloatStyle=8196
 MRUFloatXPos=-1
 MRUFloatYPos=0
@@ -529,9 +532,9 @@ YPos=58
 MRUWidth=385
 Docking=True
 MRUDockID=59419
-MRUDockLeftPos=0
+MRUDockLeftPos=8
 MRUDockTopPos=58
-MRUDockRightPos=402
+MRUDockRightPos=410
 MRUDockBottomPos=88
 MRUFloatStyle=8196
 MRUFloatXPos=-1
@@ -570,9 +573,9 @@ MRUWidth=23
 Docking=True
 MRUDockID=59419
 MRUDockLeftPos=877
-MRUDockTopPos=28
+MRUDockTopPos=31
 MRUDockRightPos=917
-MRUDockBottomPos=58
+MRUDockBottomPos=61
 MRUFloatStyle=8196
 MRUFloatXPos=-1
 MRUFloatYPos=0
@@ -1241,8 +1244,8 @@ ptn_Child1=MainFrame
 ptn_Child2=ChildFrames
 
 [WorkState_v1_2.Frames.MainFrame]
-WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAAADIPPPPAADIPPPPPPPPPPPPPPPPPPPPHLAAAAAAEHAAAAAAEGEAAAAADBDAAAAA
-Title=ST Visual Develop - ledstrip.stw - [TinyTP.c]
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPHLAAAAAAEHAAAAAAEGEAAAAADBDAAAAA
+Title=ST Visual Develop - LedStrip.stw - [NRF24.C]
 
 [WorkState_v1_2.Frames.ChildFrames]
 ptn_Child1=Document-0
@@ -1250,6 +1253,7 @@ ptn_Child2=Document-1
 ptn_Child3=Document-2
 ptn_Child4=Document-3
 ptn_Child5=Document-4
+ptn_Child6=Document-5
 
 [WorkState_v1_2.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
@@ -1258,8 +1262,8 @@ ptn_Child1=ViewFrame-0
 DocPathName=..\..\transportprotocol\tinytp.c
 DocumentString=
 DocTemplateIndex=0
-WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPIGAAAAAAIGAAAAAAALEAAAAAJKBAAAAA
-IsActiveChildFrame=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPIGAAAAAAIGAAAAAAALEAAAAAJKBAAAAA
+IsActiveChildFrame=False
 IsFrameVisible=True
 
 [WorkState_v1_2.Frames.ChildFrames.Document-1]
@@ -1291,8 +1295,8 @@ ptn_Child1=ViewFrame-0
 DocPathName=..\..\tinynrflib\nrf24.c
 DocumentString=
 DocTemplateIndex=0
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPAAAAAAAAAAAAAAAAMEEAAAAAFEBAAAAA
-IsActiveChildFrame=False
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPAAAAAAAAAAAAAAAAMEEAAAAAFEBAAAAA
+IsActiveChildFrame=True
 IsFrameVisible=True
 
 [WorkState_v1_2.Frames.ChildFrames.Document-4]
@@ -1303,5 +1307,16 @@ DocPathName=..\..\transportprotocol\tinytp.h
 DocumentString=
 DocTemplateIndex=0
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPKBAAAAAAKBAAAAAAGGEAAAAAPFBAAAAA
+IsActiveChildFrame=False
+IsFrameVisible=True
+
+[WorkState_v1_2.Frames.ChildFrames.Document-5]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-5.ViewFrame-0]
+DocPathName=debug\ledstrip.lkf
+DocumentString=
+DocTemplateIndex=0
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPBOPPPPPPIGAAAAAAIGAAAAAAELEAAAAANKBAAAAA
 IsActiveChildFrame=False
 IsFrameVisible=True

@@ -159,110 +159,110 @@
  407                     ; 56 }
  410  00d0 85            	popw	x
  411  00d1 81            	ret	
- 556                     ; 58 void main(void)
- 556                     ; 59 {
- 557                     	switch	.text
- 558  00d2               _main:
- 560  00d2 525b          	subw	sp,#91
- 561       0000005b      OFST:	set	91
- 564                     ; 64     SetUp_GPIO();
- 566  00d4 cd0000        	call	_SetUp_GPIO
- 568                     ; 65     SetUp_TIM2_PWM();
- 570  00d7 ad9a          	call	_SetUp_TIM2_PWM
- 572                     ; 66     Init_NRF();
- 574  00d9 cd002d        	call	_Init_NRF
- 576  00dc               L371:
- 577                     ; 70         reg = read_register(STATUS_REGISTER);
- 579  00dc a607          	ld	a,#7
- 580  00de cd0000        	call	_read_register
- 582  00e1 6b01          	ld	(OFST-90,sp),a
- 584                     ; 71         delay(10);
- 586  00e3 ae000a        	ldw	x,#10
- 587  00e6 cd0000        	call	_delay
- 589                     ; 73         if (reg & (1 << 6))
- 591  00e9 7b01          	ld	a,(OFST-90,sp)
- 592  00eb a540          	bcp	a,#64
- 593  00ed 27ed          	jreq	L371
- 594                     ; 75             GPIO_WriteLow(GPIOB, GPIO_PIN_5);
- 596  00ef 4b20          	push	#32
- 597  00f1 ae5005        	ldw	x,#20485
- 598  00f4 cd0000        	call	_GPIO_WriteLow
- 600  00f7 84            	pop	a
- 601                     ; 77             rx_read(buf, LED_PIPE_SIZE);
- 603  00f8 4b20          	push	#32
- 604  00fa 96            	ldw	x,sp
- 605  00fb 1c0003        	addw	x,#OFST-88
- 606  00fe cd0000        	call	_rx_read
- 608  0101 84            	pop	a
- 609                     ; 78             deserializeDataPackage(&rDataPackage, buf);
- 611  0102 96            	ldw	x,sp
- 612  0103 1c0002        	addw	x,#OFST-89
- 613  0106 89            	pushw	x
- 614  0107 1c002d        	addw	x,#45
- 615  010a cd0000        	call	_deserializeDataPackage
- 617  010d 85            	popw	x
- 618                     ; 80             Set_Colour(
- 618                     ; 81                 rDataPackage.data.data[0],
- 618                     ; 82                 rDataPackage.data.data[1],
- 618                     ; 83                 rDataPackage.data.data[2]);
- 620  010e 7b3c          	ld	a,(OFST-31,sp)
- 621  0110 88            	push	a
- 622  0111 7b3c          	ld	a,(OFST-31,sp)
- 623  0113 97            	ld	xl,a
- 624  0114 7b3b          	ld	a,(OFST-32,sp)
- 625  0116 95            	ld	xh,a
- 626  0117 ada2          	call	_Set_Colour
- 628  0119 84            	pop	a
- 629                     ; 85             reset_status();
- 631  011a cd0000        	call	_reset_status
- 633                     ; 86             delay(10);
- 635  011d ae000a        	ldw	x,#10
- 636  0120 cd0000        	call	_delay
- 638                     ; 87             flush_rx();
- 640  0123 cd0000        	call	_flush_rx
- 642                     ; 88             GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
- 644  0126 4b20          	push	#32
- 645  0128 ae5005        	ldw	x,#20485
- 646  012b cd0000        	call	_GPIO_WriteHigh
- 648  012e 84            	pop	a
- 649  012f 20ab          	jra	L371
- 684                     ; 94 void assert_failed(uint8_t* file, uint32_t line) {
- 685                     	switch	.text
- 686  0131               _assert_failed:
- 690  0131               L712:
- 691                     ; 95     while (1);
- 693  0131 20fe          	jra	L712
- 718                     	xdef	_main
- 719                     	xref	_deserializeDataPackage
- 720                     	xdef	_Set_Colour
- 721                     	xdef	_SetUp_TIM2_PWM
- 722                     	xdef	_Init_NRF
- 723                     	xdef	_SetUp_GPIO
- 724                     	xdef	_ledStripAddr
- 725                     	xref	_test_rx
- 726                     	xref	_SPI_Init_NRF
- 727                     	xref	_rx_read
- 728                     	xref	_rx_init
- 729                     	xref	_write_registerN
- 730                     	xref	_write_register
- 731                     	xref	_read_register
- 732                     	xref	_reset_status
- 733                     	xref	_flush_rx
- 734                     	xref	_delay
- 735                     	xref	_GPIO_WriteLow
- 736                     	xref	_GPIO_WriteHigh
- 737                     	xref	_GPIO_Init
- 738                     	xdef	_assert_failed
- 739                     	xref	_TIM2_SetCompare3
- 740                     	xref	_TIM2_SetCompare2
- 741                     	xref	_TIM2_SetCompare1
- 742                     	xref	_TIM2_OC3PreloadConfig
- 743                     	xref	_TIM2_OC2PreloadConfig
- 744                     	xref	_TIM2_OC1PreloadConfig
- 745                     	xref	_TIM2_Cmd
- 746                     	xref	_TIM2_OC3Init
- 747                     	xref	_TIM2_OC2Init
- 748                     	xref	_TIM2_OC1Init
- 749                     	xref	_TIM2_TimeBaseInit
- 750                     	xref	_CLK_PeripheralClockConfig
- 769                     	end
+ 532                     ; 58 void main(void)
+ 532                     ; 59 {
+ 533                     	switch	.text
+ 534  00d2               _main:
+ 536  00d2 524d          	subw	sp,#77
+ 537       0000004d      OFST:	set	77
+ 540                     ; 64     SetUp_GPIO();
+ 542  00d4 cd0000        	call	_SetUp_GPIO
+ 544                     ; 65     SetUp_TIM2_PWM();
+ 546  00d7 ad9a          	call	_SetUp_TIM2_PWM
+ 548                     ; 66     Init_NRF();
+ 550  00d9 cd002d        	call	_Init_NRF
+ 552  00dc               L161:
+ 553                     ; 70         reg = read_register(STATUS_REGISTER);
+ 555  00dc a607          	ld	a,#7
+ 556  00de cd0000        	call	_read_register
+ 558  00e1 6b01          	ld	(OFST-76,sp),a
+ 560                     ; 71         delay(10);
+ 562  00e3 ae000a        	ldw	x,#10
+ 563  00e6 cd0000        	call	_delay
+ 565                     ; 73         if (reg & (1 << 6))
+ 567  00e9 7b01          	ld	a,(OFST-76,sp)
+ 568  00eb a540          	bcp	a,#64
+ 569  00ed 27ed          	jreq	L161
+ 570                     ; 75             GPIO_WriteLow(GPIOB, GPIO_PIN_5);
+ 572  00ef 4b20          	push	#32
+ 573  00f1 ae5005        	ldw	x,#20485
+ 574  00f4 cd0000        	call	_GPIO_WriteLow
+ 576  00f7 84            	pop	a
+ 577                     ; 77             rx_read(buf, LED_PIPE_SIZE);
+ 579  00f8 4b20          	push	#32
+ 580  00fa 96            	ldw	x,sp
+ 581  00fb 1c0003        	addw	x,#OFST-74
+ 582  00fe cd0000        	call	_rx_read
+ 584  0101 84            	pop	a
+ 585                     ; 78             deserializeDataPackage(&rDataPackage, buf);
+ 587  0102 96            	ldw	x,sp
+ 588  0103 1c0002        	addw	x,#OFST-75
+ 589  0106 89            	pushw	x
+ 590  0107 1c0026        	addw	x,#38
+ 591  010a cd0000        	call	_deserializeDataPackage
+ 593  010d 85            	popw	x
+ 594                     ; 80             Set_Colour(
+ 594                     ; 81                 rDataPackage.data[0],
+ 594                     ; 82                 rDataPackage.data[1],
+ 594                     ; 83                 rDataPackage.data[2]);
+ 596  010e 7b2e          	ld	a,(OFST-31,sp)
+ 597  0110 88            	push	a
+ 598  0111 7b2e          	ld	a,(OFST-31,sp)
+ 599  0113 97            	ld	xl,a
+ 600  0114 7b2d          	ld	a,(OFST-32,sp)
+ 601  0116 95            	ld	xh,a
+ 602  0117 ada2          	call	_Set_Colour
+ 604  0119 84            	pop	a
+ 605                     ; 85             reset_status();
+ 607  011a cd0000        	call	_reset_status
+ 609                     ; 86             delay(10);
+ 611  011d ae000a        	ldw	x,#10
+ 612  0120 cd0000        	call	_delay
+ 614                     ; 87             flush_rx();
+ 616  0123 cd0000        	call	_flush_rx
+ 618                     ; 88             GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
+ 620  0126 4b20          	push	#32
+ 621  0128 ae5005        	ldw	x,#20485
+ 622  012b cd0000        	call	_GPIO_WriteHigh
+ 624  012e 84            	pop	a
+ 625  012f 20ab          	jra	L161
+ 660                     ; 94 void assert_failed(uint8_t* file, uint32_t line) {
+ 661                     	switch	.text
+ 662  0131               _assert_failed:
+ 666  0131               L502:
+ 667                     ; 95     while (1);
+ 669  0131 20fe          	jra	L502
+ 694                     	xdef	_main
+ 695                     	xref	_deserializeDataPackage
+ 696                     	xdef	_Set_Colour
+ 697                     	xdef	_SetUp_TIM2_PWM
+ 698                     	xdef	_Init_NRF
+ 699                     	xdef	_SetUp_GPIO
+ 700                     	xdef	_ledStripAddr
+ 701                     	xref	_test_rx
+ 702                     	xref	_SPI_Init_NRF
+ 703                     	xref	_rx_read
+ 704                     	xref	_rx_init
+ 705                     	xref	_write_registerN
+ 706                     	xref	_write_register
+ 707                     	xref	_read_register
+ 708                     	xref	_reset_status
+ 709                     	xref	_flush_rx
+ 710                     	xref	_delay
+ 711                     	xref	_GPIO_WriteLow
+ 712                     	xref	_GPIO_WriteHigh
+ 713                     	xref	_GPIO_Init
+ 714                     	xdef	_assert_failed
+ 715                     	xref	_TIM2_SetCompare3
+ 716                     	xref	_TIM2_SetCompare2
+ 717                     	xref	_TIM2_SetCompare1
+ 718                     	xref	_TIM2_OC3PreloadConfig
+ 719                     	xref	_TIM2_OC2PreloadConfig
+ 720                     	xref	_TIM2_OC1PreloadConfig
+ 721                     	xref	_TIM2_Cmd
+ 722                     	xref	_TIM2_OC3Init
+ 723                     	xref	_TIM2_OC2Init
+ 724                     	xref	_TIM2_OC1Init
+ 725                     	xref	_TIM2_TimeBaseInit
+ 726                     	xref	_CLK_PeripheralClockConfig
+ 745                     	end

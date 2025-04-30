@@ -13,7 +13,7 @@
 #define RED_COLOUR_BUTTON   (col == 1 && row == 1)  ///< Macro for red colour selection
 #define GREEN_COLOUR_BUTTON (col == 1 && row == 2)  ///< Macro for green colour selection
 #define BLUE_COLOUR_BUTTON  (col == 1 && row == 3)  ///< Macro for blue colour selection
-
+#define LED_STRIP_DATA_SIZE 16
 
 extern uint8_t ledStripAddr[LED_STRIP_ADDRESS_SIZE];
 
@@ -21,17 +21,14 @@ extern uint8_t ledStripAddr[LED_STRIP_ADDRESS_SIZE];
 /**
  * @brief Creates a data package for controlling an LED strip.
  *
- * This function allocates memory and fills an eventData structure
- * containing three bytes representing the red, green, and blue (RGB) color values.
+ * This function fills an array containing three bytes representing the red, green, and blue (RGB) color values.
  *
  * @param r Red color value (0-255).
  * @param g Green color value (0-255).
  * @param b Blue color value (0-255).
- * @return Pointer to the created eventData structure, or NULL if memory allocation fails.
- *
- * @note You must free both the data field and the structure itself after use.
+ * @param package Array to hold the color data (3 elements for RGB).
  */
-struct eventData *create_LEDStrip_package(uint8_t r, uint8_t g, uint8_t b);
+void create_LEDStrip_package(uint8_t r, uint8_t g, uint8_t b, uint8_t *package);
 
 
 /**
@@ -43,9 +40,16 @@ struct eventData *create_LEDStrip_package(uint8_t r, uint8_t g, uint8_t b);
  * @param col The column number of the pressed button.
  * @return uint8_t Status code indicating success or failure.
  */
-uint8_t procces_LEDStrip(uint8_t row, uint8_t col);
+uint8_t process_LEDStrip(uint8_t row, uint8_t col);
 
 
-uint8_t SWITCH_TO_LESDSTRIP_MODE(void);
+/**
+ * @brief Switches to LED strip mode.
+ *
+ * Sets up the necessary parameters for communication with the LED strip.
+ *
+ * @return uint8_t Status code indicating success or failure.
+ */
+uint8_t SWITCH_TO_LEDSTRIP_MODE(void);
 
-#endif
+#endif // _LED_STRIP__H_

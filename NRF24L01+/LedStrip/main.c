@@ -78,9 +78,9 @@ void main(void)
             deserializeDataPackage(&rDataPackage, buf);
 
             Set_Colour(
-                rDataPackage.data.data[0],
-                rDataPackage.data.data[1],
-                rDataPackage.data.data[2]);
+                rDataPackage.data[0],
+                rDataPackage.data[1],
+                rDataPackage.data[2]);
 
             reset_status();
             delay(10);
