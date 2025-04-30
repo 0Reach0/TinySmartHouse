@@ -11,10 +11,9 @@
  */
 
 
-#define PROC_FREQ 16000000UL
 
-
-#include "NRF24.H"  
+#include "NRF24.H" 
+#include "ledstrip.h"
 
 /* Remote Control Pins (modify these according to your hardware) */
 #define RC_PIN1 GPIOD, GPIO_PIN_1  ///< Remote control pin 1
@@ -30,10 +29,11 @@
 #define POWER_SAVE_MODE           ///< Enable power save mode
 #define POWER_SAVE_BUTTON (col == 1 && row == 4)  ///< Macro to detect power save button press
 
-#define DEFAULT_MOD LED_STRIP_MOD         ///< Default operating mode
+#define DEFAULT_MOD STRIP_MOD         ///< Default operating mode
 #define DEFAULT_ADDRESS ledStripAddr      ///< Default device address
 
 
+extern uint8_t *txaddr;
 
 
 /**
@@ -58,18 +58,6 @@ uint8_t waiting_for_click(uint8_t * row, uint8_t * col, uint8_t t);
  * @return uint8_t The new channel after swapping.
  */
 uint8_t swap_chanel(uint8_t chanel);
-
-
-uint8_t *serializePackage(struct dataPackage *pkg, int *size);
-
-
-void deserializePackage(struct dataPackage *pkg, uint8_t *buffer);
-
-
-uint8_t send_event(uint8_t device, uint8_t d_size, uint8_t type,struct eventData * data);
-
-
-uint8_t check_for_updates();
 
 
 uint8_t process_event();

@@ -12,13 +12,18 @@
 #include "stm8s_gpio.h"  
 #include "nrf24.h"       
 #include "stm8s.h"       
-#include "stm8s_tim2.h"  
+#include "stm8s_tim2.h"
+
+
+extern uint8_t ledStripAddr[];
+
 
 /** @brief Size of the LED control data pipe */
-#define LED_PIPE_SIZE 3
+#define LED_PIPE_SIZE 32
 
 /** @brief Address assigned to the LED control module */
-#define LED_ADDRESS 0x01
+#define LED_ADDRESS_SIZE 5
+
 
 /**
  * @brief Configures the GPIO pins.

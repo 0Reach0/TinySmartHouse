@@ -4,7 +4,7 @@
 */
 
 #ifndef _LED_STRIP__H_
-#defibe _LED_STRIP__H_
+#define _LED_STRIP__H_
 
 #define LED_STRIP                 									///< Enable LED strip functionality
 #define STRIP_MOD  0x00           									///< LED strip operating mode
@@ -15,7 +15,7 @@
 #define BLUE_COLOUR_BUTTON  (col == 1 && row == 3)  ///< Macro for blue colour selection
 
 
-extern uin8_t ledStripAddr[];
+extern uint8_t ledStripAddr[LED_STRIP_ADDRESS_SIZE];
 
 
 /**

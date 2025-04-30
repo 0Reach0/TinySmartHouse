@@ -1,28 +1,18 @@
 #include "stm8s.h"
 #include "main.h"
-#inclide "ledstrip.h"
+#include "ledstrip.h"
 #include "smartsocket.h"
 #include "string.h"
-#include "tynitp.h"
+#include "tinytp.h"
 
 //GLOBAL VARIABLES
 uint8_t CURRENT_MODE = DEFAULT_MOD;
- uint8_t txaddr *;
+uint8_t *txaddr;
 uint8_t row;
 uint8_t col;
 struct dataPackage dPack;
 //end GLOBAL VARIABLES
 
-
-
-void delay_ms(uint32_t ms) {
-    uint32_t cycles_per_ms = PROC_FREQ / 1000;
-    volatile uint32_t cycles = cycles_per_ms * ms;
-
-    while (cycles--) {
-        __asm__ volatile ("nop");
-    }
-}
 
 void Init_Pins(void) {
 

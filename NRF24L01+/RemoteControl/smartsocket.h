@@ -18,7 +18,7 @@
 #define SOCKET_MOD_BUTTON (col == 4 && row == 2)    ///< Macro for socket mode button
 
 
-uint8_t smartSocketAddr[];
+uint8_t smartSocketAddr[SOCKET_ADDRESS_SIZE];
 
 
 

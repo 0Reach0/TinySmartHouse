@@ -1,33 +1,34 @@
 #include "main.h"
+#include "tinytp.h"
 
+uint8_t ledStripAddr[LED_ADDRESS_SIZE] = {0x1, 0x1, 0x1, 0x1, 0x1};
 
 void SetUp_GPIO(void)
 {
     GPIO_Init(GPIOD, GPIO_PIN_2, GPIO_MODE_OUT_PP_LOW_FAST);
     GPIO_Init(GPIOD, GPIO_PIN_3, GPIO_MODE_OUT_PP_LOW_FAST);
     GPIO_Init(GPIOD, GPIO_PIN_4, GPIO_MODE_OUT_PP_LOW_FAST);
-		GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST);
+    GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST);
 }
 
 void Init_NRF(void)
 {
-		uint8_t rxaddr[5] = {LED_ADDRESS, LED_ADDRESS, LED_ADDRESS, LED_ADDRESS, LED_ADDRESS};
+    uint8_t *rxaddr = ledStripAddr;
     uint8_t status;
-		SPI_Init_NRF();
-		delay(10);
+    SPI_Init_NRF();
+    delay(10);
     rx_init();
-		SET_PPE0_ADDR(rxaddr, 5);
-		delay(10);
-		SET_PPE0_SIZE(LED_PIPE_SIZE);
-		delay(10);
-		status = test_rx();
-		if(status!= 0)
-		{
-			GPIO_WriteLow(GPIOB, GPIO_PIN_5);
-			while(1);
-	}
+    SET_PPE0_ADDR(rxaddr, 5);
+    delay(10);
+    SET_PPE0_SIZE(LED_PIPE_SIZE);
+    delay(10);
+    status = test_rx();
+    if (status != 0)
+    {
+        GPIO_WriteLow(GPIOB, GPIO_PIN_5);
+        while (1);
+    }
 }
-
 
 void SetUp_TIM2_PWM(void)
 {
@@ -56,33 +57,41 @@ void Set_Colour(uint8_t r, uint8_t g, uint8_t b)
 
 void main(void)
 {
-	uint8_t reg;
-	uint8_t buf[3];
-	SetUp_GPIO();
-	SetUp_TIM2_PWM();
-	Init_NRF();
+    struct dataPackage rDataPackage;
+    uint8_t reg;
+    uint8_t buf[sizeof(struct dataPackage)];
+
+    SetUp_GPIO();
+    SetUp_TIM2_PWM();
+    Init_NRF();
+
     while (1)
     {
         reg = read_register(STATUS_REGISTER);
-				delay(10);
+        delay(10);
+
         if (reg & (1 << 6))
         {
-						GPIO_WriteLow(GPIOB, GPIO_PIN_5);
-            rx_read(buf, 3);
-						Set_Colour(buf[0], buf[1], buf[2]);
+            GPIO_WriteLow(GPIOB, GPIO_PIN_5);
+
+            rx_read(buf, LED_PIPE_SIZE);
+            deserializeDataPackage(&rDataPackage, buf);
+
+            Set_Colour(
+                rDataPackage.data.data[0],
+                rDataPackage.data.data[1],
+                rDataPackage.data.data[2]);
+
             reset_status();
             delay(10);
-						flush_rx();
-						GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
+            flush_rx();
+            GPIO_WriteHigh(GPIOB, GPIO_PIN_5);
         }
     }
 }
 
-
-
 #ifdef USE_FULL_ASSERT
 void assert_failed(uint8_t* file, uint32_t line) {
-    // ??????????? ???? ? ?????? ??????
     while (1);
 }
 #endif

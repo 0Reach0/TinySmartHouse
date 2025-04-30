@@ -1,8 +1,9 @@
+#include "ledstrip.h"
+
 #ifdef LED_STRIP
 
 #include "stm8s.h"
-#include "ledstrip.h"
-#include "tynitp.h"
+#include "tinytp.h"
 
 
 uint8_t ledStripAddr[LED_STRIP_ADDRESS_SIZE] = {0x1, 0x1, 0x1, 0x1, 0x1};

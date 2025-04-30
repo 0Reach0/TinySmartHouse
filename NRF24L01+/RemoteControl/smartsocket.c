@@ -1,8 +1,9 @@
+#include "smartsocket.h"
+
 #ifdef SOCKET
 
-#include "smartsocket.h"
 #include "stm8s.h"
-#include "tynitp.h"
+#include "tinytp.h"
 
 
 uint8_t smartSocketAddr[SOCKET_ADDRESS_SIZE] = {0x2, 0x2, 0x2, 0x2, 0x2};
